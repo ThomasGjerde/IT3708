@@ -1,5 +1,6 @@
 World world;
 float MAX_SPEED = 2.0;
+float MIN_SEPARATION = 25.0;
 void setup() {
   size(500, 500);
   world = new World();
@@ -29,7 +30,6 @@ class World {
 class Boid {
 PVector position;
 PVector velocity;
-float radius = 2.0;
 
 Boid(float posX, float posY){
  position = new PVector(posX,posY); 
@@ -43,7 +43,12 @@ void updatePosition(PVector change){
 }
 
 void calcForce(){
-  updatePosition(new PVector(0.1,0.5)); //Test
+  //updatePosition(new PVector(0.1,0.5)); //Test
+  PVector change = new PVector(0,0);
+  change.add(separation());
+  //change.add(alignment());
+  //change.add(cohesion());
+  updatePosition(change);
 }
 
 void process(){
@@ -78,4 +83,22 @@ void wrapAround(){
     position.y = 0; 
   }
 }
+PVector separation(){
+ PVector allChanges = new PVector(0,0,0);
+ int totalChanges = 0;
+ for(Boid boid : world.boids){
+  if(this != boid && this.position.dist(boid.position) < MIN_SEPARATION){
+   PVector change = PVector.sub(this.position.sub,boid.position);
+   change.normalize();
+   change.div(this.position.dist(boid.position));
+   totalChanges++;
+   allChanges.add(change);
+  }
+ }
+if(totalChanges > 0){
+ allChanges.div(totalChanges);
+} 
+return allChanges;
+}
+
 }
