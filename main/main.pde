@@ -1,7 +1,8 @@
 World world;
 float MAX_SPEED = 2.0;
 float MIN_SEPARATION = 25.0;
-void setup() {
+float RANGE = 70;
+public void setup() {
   size(700, 700);
   world = new World();
   for (int i = 0; i < 200; i++) {
@@ -9,17 +10,17 @@ void setup() {
   }
 }
 
-void draw() {
+public void draw() {
   background(50);
   world.updateAll();
 }
 
-class World {
+public class World {
   ArrayList<Boid> boids = new ArrayList<Boid>();
-  void addBoid(float posX, float posY) {
+  public void addBoid(float posX, float posY) {
     boids.add(new Boid(posX, posY));
   }
-  void updateAll()
+  public void updateAll()
   {
     for (int i = 0; i < boids.size (); i++) {
       boids.get(i).process();
@@ -27,39 +28,39 @@ class World {
   }
 }
 
-class Boid {
+public class Boid {
   PVector position;
   PVector velocity;
 
-  Boid(float posX, float posY) {
+  public Boid(float posX, float posY) {
     position = new PVector(posX, posY); 
     velocity = new PVector(0, 0);
   }
 
-  void updatePosition(PVector change) {
+  private void updatePosition(PVector change) {
     velocity.add(change);
     velocity.limit(MAX_SPEED);
     position.add(velocity);
   }
 
-  void calcForce() {
+  private void calcForce() {
     //updatePosition(new PVector(0.1,0.5)); //Test
     PVector change = new PVector(0, 0);
     change.add(separation());
-    //change.add(alignment());
+    change.add(alignment());
     //change.add(cohesion());
     updatePosition(change);
   }
 
-  void process() {
+  public void process() {
     calcForce();
     wrapAround();
     drawBoid();
   }
-  void drawBoid() {
+  private void drawBoid() {
     drawArrow(position.x, position.y, 8, velocity.heading());
   }
-  void drawArrow(float cx, float cy, int len, float angle) {
+  private void drawArrow(float cx, float cy, int len, float angle) {
     pushMatrix();
     translate(cx, cy);
     rotate(angle);
@@ -68,7 +69,7 @@ class Boid {
     line(len, 0, len - 8, 8);
     popMatrix();
   }
-  void wrapAround() {
+  private void wrapAround() {
     if (position.x < 0) {
       position.x = width;
     } 
@@ -82,7 +83,7 @@ class Boid {
       position.y = 0;
     }
   }
-  PVector separation() {
+  private PVector separation() {
     PVector allChanges = new PVector(0, 0, 0);
     int totalChanges = 0;
     for (Boid boid : world.boids) {
@@ -98,6 +99,21 @@ class Boid {
       allChanges.div(totalChanges);
     } 
     return allChanges;
+  }
+  private PVector alignment(){
+    int totalChanges = 0;
+    PVector average = new PVector(0,0);
+    for(Boid boid : world.boids){
+      if(boid != this && this.position.dist(boid.position) <= RANGE)
+      {
+        average.add(boid.velocity);
+        totalChanges++;
+      }
+    }    
+    if(totalChanges > 0){
+     average.div(totalChanges); 
+    }
+    return average;
   }
 }
 
