@@ -338,11 +338,14 @@ public class Boid {
    PVector change = new PVector(0,0);
   int totalChange = 0;
  for(Obstacle obstacle : world.obstacles){
-  if(PVector.sub(this.position,obstacle.position).x > -5 && PVector.sub(this.position,obstacle.position).x < 5){
+   if(this.position.dist(obstacle.position) < RANGE){
+    if(PVector.sub(this.position,obstacle.position).x > -5 && PVector.sub(this.position,obstacle.position).x < 5){
   change.add(10,0,0);
   }else if(PVector.sub(this.position,obstacle.position).y > -5 && PVector.sub(this.position,obstacle.position).y < 5){
   change.add(0,10,0);
-  }  
+  } 
+   }
+    
  }
  return change;
   }
