@@ -4,6 +4,7 @@ float separationWeight = 2.0;
 float alignmentWeight = 1.0;
 float cohesionWeight = 1.0;
 float MAX_SPEED = 2.0;
+float MAX_SPEED_PREDATOR = 2.0;
 float MIN_SEPARATION = 20.0;
 float RANGE = 70;
 float BOID_SIZE = 4;
@@ -355,6 +356,8 @@ public class Predator{
     velocity = new PVector(0, 0);
   }
     public void process() {
+      chase();
+      wrapAround();
     drawPredator();
   }
   private void drawPredator() {
@@ -369,6 +372,46 @@ public class Predator{
     line(len, 0, len - 4, 4);
     popMatrix();
     stroke(255);
+  }
+    private void wrapAround() {
+    if (position.x < 0) {
+      position.x = width;
+    } 
+    if (position.x > width) {
+      position.x = 0;
+    }
+    if (position.y < 0) {
+      position.y = height;
+    }
+    if (position.y > height) {
+      position.y = 0;
+    }
+  }
+  private void chase(){
+    PVector change = new PVector(0,0);
+    change.add(cohesion());
+    velocity.add(change);
+    velocity.limit(MAX_SPEED_PREDATOR);
+    position.add(velocity);
+  }
+  private PVector cohesion() {
+    int totalChanges = 0;
+    PVector average = new PVector(0, 0);
+    for (Boid boid : world.boids) {
+      if (this.position.dist(boid.position) <= RANGE + 25.0) {
+        average.add(boid.position);
+        totalChanges++;
+      }
+    }
+    if (totalChanges > 0) {
+      average.div(totalChanges);
+      PVector toTarget = PVector.sub(average,this.position);
+      PVector change = PVector.sub(toTarget,this.velocity);
+      change.limit(0.05);
+      return change;
+    }else{
+      return new PVector(0,0);
+    }
   }
 }
 
