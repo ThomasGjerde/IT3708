@@ -19,6 +19,10 @@ int MINUS_ALIGNMENT = 200;
 int MINUS_COHESION = 370;
 int LABEL_COHESION = 400;
 int PLUS_COHESION = 490;
+int MINUS_PREDATOR = 550;
+int PLUS_PREDATOR = 590;
+int MINUS_OBSTACLE = 630;
+int PLUS_OBSTACLE = 670;
 PFont separationLabel;
 PFont alignmentLabel;
 PFont cohesionLabel;
@@ -29,6 +33,10 @@ boolean plusAlignmentOver = false;
 boolean minusAlignmentOver = false;
 boolean plusCohesionOver = false;
 boolean minusCohesionOver = false;
+boolean plusPredatorOver = false;
+boolean minusPredatorOver = false;
+boolean plusObstacleOver = false;
+boolean minusObstacleOver = false;
 
 public void setup() {
   size(700, 700);
@@ -44,10 +52,6 @@ public void setup() {
   for (int i = 0; i < 200; i++) {
     world.addBoid(random(width), random(height));
   }
-  
-    //world.addPredator(random(width),random(height));
-    //world.addPredator(random(width),random(height));
-    world.addObstacle(random(width),random(height));
     
 }
 private void displayText(PFont font,String text,float num,int x, int y){
@@ -74,6 +78,19 @@ public void update(){
   if(overCircle(MINUS_COHESION,BUTTONS_Y,BUTTON_SIZE)){
    minusCohesionOver = true; 
   }
+  if(overCircle(MINUS_PREDATOR,BUTTONS_Y,BUTTON_SIZE)){
+   minusPredatorOver = true; 
+  }
+  if(overCircle(PLUS_PREDATOR,BUTTONS_Y,BUTTON_SIZE)){
+   plusPredatorOver = true; 
+  }
+  if(overCircle(MINUS_OBSTACLE,BUTTONS_Y,BUTTON_SIZE)){
+   minusObstacleOver = true; 
+  }
+  if(overCircle(PLUS_OBSTACLE,BUTTONS_Y,BUTTON_SIZE)){
+   plusObstacleOver = true; 
+  }
+  
 }
 
 public void mousePressed() {
@@ -95,6 +112,22 @@ public void mousePressed() {
   if(minusCohesionOver){
    cohesionWeight -= 0.1; 
   }
+  if(plusPredatorOver){
+   world.addPredator(random(width),random(height)); 
+  }
+  if(minusPredatorOver){
+   if(world.predators.size() > 0){
+    world.predators.remove(0);
+   } 
+  }
+  if(plusObstacleOver){
+   world.addObstacle(random(width),random(height)); 
+  }
+  if(minusObstacleOver){
+   if(world.obstacles.size() > 0){
+    world.obstacles.remove(0); 
+   }
+  }
 }
 
 private void setAllButtonsFalse(){
@@ -104,6 +137,10 @@ private void setAllButtonsFalse(){
   minusAlignmentOver = false;
   plusCohesionOver = false;
   minusCohesionOver = false;
+   plusPredatorOver = false;
+ minusPredatorOver = false;
+ plusObstacleOver = false;
+ minusObstacleOver = false;
 }
 
 private boolean overCircle(int x, int y, int diameter) {
@@ -130,6 +167,13 @@ public void draw() {
   ellipse(PLUS_COHESION, BUTTONS_Y, BUTTON_SIZE, BUTTON_SIZE);
   displayText(cohesionLabel,"Coh: ", cohesionWeight,LABEL_COHESION,BUTTONS_Y); 
   ellipse(MINUS_COHESION, BUTTONS_Y, BUTTON_SIZE, BUTTON_SIZE);
+  
+  ellipse(PLUS_PREDATOR, BUTTONS_Y, BUTTON_SIZE, BUTTON_SIZE);
+  ellipse(MINUS_PREDATOR, BUTTONS_Y, BUTTON_SIZE, BUTTON_SIZE);
+  
+    ellipse(PLUS_OBSTACLE, BUTTONS_Y, BUTTON_SIZE, BUTTON_SIZE);
+  ellipse(MINUS_OBSTACLE, BUTTONS_Y, BUTTON_SIZE, BUTTON_SIZE);
+  
   update();
   world.updateAll();
 }
