@@ -38,14 +38,17 @@ public void setup() {
   separationLabel = createFont("Arial",LABEL_FONT_SIZE,true);
   alignmentLabel = createFont("Arial",LABEL_FONT_SIZE,true);
   cohesionLabel = createFont("Arial",LABEL_FONT_SIZE,true);
+  
+  
   world = new World();
   for (int i = 0; i < 200; i++) {
     world.addBoid(random(width), random(height));
   }
   
-    world.addPredator(random(width),random(height));
+    //world.addPredator(random(width),random(height));
+    //world.addPredator(random(width),random(height));
+    world.addObstacle(random(width),random(height));
     
-    world.addPredator(random(width),random(height));
 }
 private void displayText(PFont font,String text,float num,int x, int y){
   textFont(font,LABEL_FONT_SIZE);
@@ -134,11 +137,15 @@ public void draw() {
 public class World {
   ArrayList<Boid> boids = new ArrayList<Boid>();
   ArrayList<Predator> predators = new ArrayList<Predator>();
+  ArrayList<Obstacle> obstacles = new ArrayList<Obstacle>();
   public void addBoid(float posX, float posY) {
     boids.add(new Boid(posX, posY));
   }
   public void addPredator(float posX,float posY){
    predators.add(new Predator(posX,posY)); 
+  }
+  public void addObstacle(float posX,float posY){
+   obstacles.add(new Obstacle(posX,posY)); 
   }
   public void updateAll()
   {
@@ -147,6 +154,9 @@ public class World {
     }
     for(int i = 0; i < predators.size(); i++){
      predators.get(i).process(); 
+    }
+    for(int i = 0; i < obstacles.size(); i++){
+     obstacles.get(i).process(); 
     }
   }
 }
@@ -177,6 +187,8 @@ public class Boid {
     change.add(separation);
     change.add(alignment);
     change.add(cohesion);
+    change.add(avoidPredator());
+    change.add(avoidObstacle());
     updatePosition(change);
   }
 
@@ -277,6 +289,18 @@ public class Boid {
   } 
   return change;
   }
+  private PVector avoidObstacle(){
+   PVector change = new PVector(0,0);
+  int totalChange = 0;
+ for(Obstacle obstacle : world.obstacles){
+  if(PVector.sub(this.position,obstacle.position).x > -5 && PVector.sub(this.position,obstacle.position).x < 5){
+  change.add(10,0,0);
+  }else if(PVector.sub(this.position,obstacle.position).y > -5 && PVector.sub(this.position,obstacle.position).y < 5){
+  change.add(0,10,0);
+  }  
+ }
+ return change;
+  }
 }
 public class Predator{
   PVector position;
@@ -302,5 +326,18 @@ public class Predator{
     popMatrix();
     stroke(255);
   }
+}
+
+public class Obstacle{
+ PVector position;
+public Obstacle(float posX, float posY){
+ position = new PVector(posX,posY);
+} 
+public void process(){
+  drawObstacle();
+}
+private void drawObstacle(){
+ rect(position.x,position.y,4,4); 
+}
 }
 
