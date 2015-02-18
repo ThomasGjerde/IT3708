@@ -44,104 +44,102 @@ public void setup() {
   df = new DecimalFormat();
   df.setMaximumFractionDigits(2);
   BUTTONS_Y = height - 25;
-  separationLabel = createFont("Arial",LABEL_FONT_SIZE,true);
-  alignmentLabel = createFont("Arial",LABEL_FONT_SIZE,true);
-  cohesionLabel = createFont("Arial",LABEL_FONT_SIZE,true);
-  
-  
+  separationLabel = createFont("Arial", LABEL_FONT_SIZE, true);
+  alignmentLabel = createFont("Arial", LABEL_FONT_SIZE, true);
+  cohesionLabel = createFont("Arial", LABEL_FONT_SIZE, true);
+
+
   world = new World();
   for (int i = 0; i < 200; i++) {
     world.addBoid(random(width), random(height));
   }
-    
 }
-private void displayText(PFont font,String text,float num,int x, int y){
-  textFont(font,LABEL_FONT_SIZE);
-  text(text + df.format(num),x,y); 
+private void displayText(PFont font, String text, float num, int x, int y) {
+  textFont(font, LABEL_FONT_SIZE);
+  text(text + df.format(num), x, y);
 }
-public void update(){
+public void update() {
   setAllButtonsFalse();
-  if(overCircle(PLUS_SEPARATION,BUTTONS_Y,BUTTON_SIZE)){
-   plusSeparationOver = true; 
+  if (overCircle(PLUS_SEPARATION, BUTTONS_Y, BUTTON_SIZE)) {
+    plusSeparationOver = true;
   }
-  if(overCircle(MINUS_SEPARATION,BUTTONS_Y,BUTTON_SIZE)){
-   minusSeparationOver = true; 
+  if (overCircle(MINUS_SEPARATION, BUTTONS_Y, BUTTON_SIZE)) {
+    minusSeparationOver = true;
   }
-  if(overCircle(PLUS_ALIGNMENT,BUTTONS_Y,BUTTON_SIZE)){
-   plusAlignmentOver = true; 
+  if (overCircle(PLUS_ALIGNMENT, BUTTONS_Y, BUTTON_SIZE)) {
+    plusAlignmentOver = true;
   }
-  if(overCircle(MINUS_ALIGNMENT,BUTTONS_Y,BUTTON_SIZE)){
-   minusAlignmentOver = true; 
+  if (overCircle(MINUS_ALIGNMENT, BUTTONS_Y, BUTTON_SIZE)) {
+    minusAlignmentOver = true;
   }
-  if(overCircle(PLUS_COHESION,BUTTONS_Y,BUTTON_SIZE)){
-   plusCohesionOver = true;
+  if (overCircle(PLUS_COHESION, BUTTONS_Y, BUTTON_SIZE)) {
+    plusCohesionOver = true;
   }
-  if(overCircle(MINUS_COHESION,BUTTONS_Y,BUTTON_SIZE)){
-   minusCohesionOver = true; 
+  if (overCircle(MINUS_COHESION, BUTTONS_Y, BUTTON_SIZE)) {
+    minusCohesionOver = true;
   }
-  if(overCircle(MINUS_PREDATOR,BUTTONS_Y,BUTTON_SIZE)){
-   minusPredatorOver = true; 
+  if (overCircle(MINUS_PREDATOR, BUTTONS_Y, BUTTON_SIZE)) {
+    minusPredatorOver = true;
   }
-  if(overCircle(PLUS_PREDATOR,BUTTONS_Y,BUTTON_SIZE)){
-   plusPredatorOver = true; 
+  if (overCircle(PLUS_PREDATOR, BUTTONS_Y, BUTTON_SIZE)) {
+    plusPredatorOver = true;
   }
-  if(overCircle(MINUS_OBSTACLE,BUTTONS_Y,BUTTON_SIZE)){
-   minusObstacleOver = true; 
+  if (overCircle(MINUS_OBSTACLE, BUTTONS_Y, BUTTON_SIZE)) {
+    minusObstacleOver = true;
   }
-  if(overCircle(PLUS_OBSTACLE,BUTTONS_Y,BUTTON_SIZE)){
-   plusObstacleOver = true; 
+  if (overCircle(PLUS_OBSTACLE, BUTTONS_Y, BUTTON_SIZE)) {
+    plusObstacleOver = true;
   }
-  
 }
 
 public void mousePressed() {
   if (plusSeparationOver) {
     separationWeight += 0.1;
   }
-  if(minusSeparationOver){
-     separationWeight -= 0.1; 
+  if (minusSeparationOver) {
+    separationWeight -= 0.1;
   }
-  if(plusAlignmentOver){
-   alignmentWeight += 0.1; 
+  if (plusAlignmentOver) {
+    alignmentWeight += 0.1;
   }
-  if(minusAlignmentOver){
-   alignmentWeight -= 0.1; 
+  if (minusAlignmentOver) {
+    alignmentWeight -= 0.1;
   }
-  if(plusCohesionOver){
-   cohesionWeight += 0.1; 
+  if (plusCohesionOver) {
+    cohesionWeight += 0.1;
   }
-  if(minusCohesionOver){
-   cohesionWeight -= 0.1; 
+  if (minusCohesionOver) {
+    cohesionWeight -= 0.1;
   }
-  if(plusPredatorOver){
-   world.addPredator(random(width),random(height)); 
+  if (plusPredatorOver) {
+    world.addPredator(random(width), random(height));
   }
-  if(minusPredatorOver){
-   if(world.predators.size() > 0){
-    world.predators.remove(0);
-   } 
+  if (minusPredatorOver) {
+    if (world.predators.size() > 0) {
+      world.predators.remove(0);
+    }
   }
-  if(plusObstacleOver){
-   world.addObstacle(random(width),random(height)); 
+  if (plusObstacleOver) {
+    world.addObstacle(random(width), random(height));
   }
-  if(minusObstacleOver){
-   if(world.obstacles.size() > 0){
-    world.obstacles.remove(0); 
-   }
+  if (minusObstacleOver) {
+    if (world.obstacles.size() > 0) {
+      world.obstacles.remove(0);
+    }
   }
 }
 
-private void setAllButtonsFalse(){
- plusSeparationOver = false;
+private void setAllButtonsFalse() {
+  plusSeparationOver = false;
   minusSeparationOver = false; 
   plusAlignmentOver = false;
   minusAlignmentOver = false;
   plusCohesionOver = false;
   minusCohesionOver = false;
-   plusPredatorOver = false;
- minusPredatorOver = false;
- plusObstacleOver = false;
- minusObstacleOver = false;
+  plusPredatorOver = false;
+  minusPredatorOver = false;
+  plusObstacleOver = false;
+  minusObstacleOver = false;
 }
 
 private boolean overCircle(int x, int y, int diameter) {
@@ -158,23 +156,23 @@ public void draw() {
   background(50);
   //stroke(0);
   ellipse(PLUS_SEPARATION, BUTTONS_Y, BUTTON_SIZE, BUTTON_SIZE);
-  displayText(separationLabel,"Sep: ", separationWeight,LABEL_SEPARATION,BUTTONS_Y); 
+  displayText(separationLabel, "Sep: ", separationWeight, LABEL_SEPARATION, BUTTONS_Y); 
   ellipse(MINUS_SEPARATION, BUTTONS_Y, BUTTON_SIZE, BUTTON_SIZE);
-    
+
   ellipse(PLUS_ALIGNMENT, BUTTONS_Y, BUTTON_SIZE, BUTTON_SIZE);
-  displayText(alignmentLabel,"Align: ", alignmentWeight,LABEL_ALIGNMENT,BUTTONS_Y); 
+  displayText(alignmentLabel, "Align: ", alignmentWeight, LABEL_ALIGNMENT, BUTTONS_Y); 
   ellipse(MINUS_ALIGNMENT, BUTTONS_Y, BUTTON_SIZE, BUTTON_SIZE);
-  
+
   ellipse(PLUS_COHESION, BUTTONS_Y, BUTTON_SIZE, BUTTON_SIZE);
-  displayText(cohesionLabel,"Coh: ", cohesionWeight,LABEL_COHESION,BUTTONS_Y); 
+  displayText(cohesionLabel, "Coh: ", cohesionWeight, LABEL_COHESION, BUTTONS_Y); 
   ellipse(MINUS_COHESION, BUTTONS_Y, BUTTON_SIZE, BUTTON_SIZE);
-  
+
   ellipse(PLUS_PREDATOR, BUTTONS_Y, BUTTON_SIZE, BUTTON_SIZE);
   ellipse(MINUS_PREDATOR, BUTTONS_Y, BUTTON_SIZE, BUTTON_SIZE);
-  
-    ellipse(PLUS_OBSTACLE, BUTTONS_Y, BUTTON_SIZE, BUTTON_SIZE);
+
+  ellipse(PLUS_OBSTACLE, BUTTONS_Y, BUTTON_SIZE, BUTTON_SIZE);
   ellipse(MINUS_OBSTACLE, BUTTONS_Y, BUTTON_SIZE, BUTTON_SIZE);
-  
+
   update();
   world.updateAll();
 }
@@ -186,22 +184,22 @@ public class World {
   public void addBoid(float posX, float posY) {
     boids.add(new Boid(posX, posY));
   }
-  public void addPredator(float posX,float posY){
-   predators.add(new Predator(posX,posY)); 
+  public void addPredator(float posX, float posY) {
+    predators.add(new Predator(posX, posY));
   }
-  public void addObstacle(float posX,float posY){
-   obstacles.add(new Obstacle(posX,posY)); 
+  public void addObstacle(float posX, float posY) {
+    obstacles.add(new Obstacle(posX, posY));
   }
   public void updateAll()
   {
     for (int i = 0; i < boids.size (); i++) {
       boids.get(i).process();
     }
-    for(int i = 0; i < predators.size(); i++){
-     predators.get(i).process(); 
+    for (int i = 0; i < predators.size (); i++) {
+      predators.get(i).process();
     }
-    for(int i = 0; i < obstacles.size(); i++){
-     obstacles.get(i).process(); 
+    for (int i = 0; i < obstacles.size (); i++) {
+      obstacles.get(i).process();
     }
   }
 }
@@ -282,7 +280,7 @@ public class Boid {
     if (totalChanges > 0) {
       allChanges.div(totalChanges);
     } 
-    
+
     return allChanges;
   }
   private PVector alignment() {
@@ -311,46 +309,45 @@ public class Boid {
     }
     if (totalChanges > 0) {
       average.div(totalChanges);
-      PVector toTarget = PVector.sub(average,this.position);
-      PVector change = PVector.sub(toTarget,this.velocity);
+      PVector toTarget = PVector.sub(average, this.position);
+      PVector change = PVector.sub(toTarget, this.velocity);
       change.limit(0.05);
       return change;
-    }else{
-      return new PVector(0,0);
+    } else {
+      return new PVector(0, 0);
     }
   }
-  private PVector avoidPredator(){
-    PVector change = new PVector(0,0);
+  private PVector avoidPredator() {
+    PVector change = new PVector(0, 0);
     int totalChange = 0;
-   for(Predator predator : world.predators) {
-    if(this.position.dist(predator.position) < RANGE){
-      PVector fromTarget = PVector.sub(predator.position,this.position);
-      fromTarget.rotate(PI);
-      change.add(fromTarget);
+    for (Predator predator : world.predators) {
+      if (this.position.dist(predator.position) < RANGE) {
+        PVector fromTarget = PVector.sub(predator.position, this.position);
+        fromTarget.rotate(PI);
+        change.add(fromTarget);
+      }
     }
-   }
-  if(totalChange > 0){
-   change.div(totalChange);
-  } 
-  return change;
+    if (totalChange > 0) {
+      change.div(totalChange);
+    } 
+    return change;
   }
-  private PVector avoidObstacle(){
-   PVector change = new PVector(0,0);
-  int totalChange = 0;
- for(Obstacle obstacle : world.obstacles){
-   if(this.position.dist(obstacle.position) < RANGE){
-    if(PVector.sub(this.position,obstacle.position).x > -5 && PVector.sub(this.position,obstacle.position).x < 5){
-  change.add(10,0,0);
-  }else if(PVector.sub(this.position,obstacle.position).y > -5 && PVector.sub(this.position,obstacle.position).y < 5){
-  change.add(0,10,0);
-  } 
-   }
-    
- }
- return change;
+  private PVector avoidObstacle() {
+    PVector change = new PVector(0, 0);
+    int totalChange = 0;
+    for (Obstacle obstacle : world.obstacles) {
+      if (this.position.dist(obstacle.position) < RANGE) {
+        if (PVector.sub(this.position, obstacle.position).x > -5 && PVector.sub(this.position, obstacle.position).x < 5) {
+          change.add(10, 0, 0);
+        } else if (PVector.sub(this.position, obstacle.position).y > -5 && PVector.sub(this.position, obstacle.position).y < 5) {
+          change.add(0, 10, 0);
+        }
+      }
+    }
+    return change;
   }
 }
-public class Predator{
+public class Predator {
   PVector position;
   PVector velocity;
 
@@ -358,9 +355,9 @@ public class Predator{
     position = new PVector(posX, posY); 
     velocity = new PVector(0, 0);
   }
-    public void process() {
-      chase();
-      wrapAround();
+  public void process() {
+    chase();
+    wrapAround();
     drawPredator();
   }
   private void drawPredator() {
@@ -370,13 +367,13 @@ public class Predator{
     pushMatrix();
     translate(cx, cy);
     rotate(angle);
-    stroke(255,0,0);
+    stroke(255, 0, 0);
     line(len, 0, len - 4, -4);
     line(len, 0, len - 4, 4);
     popMatrix();
     stroke(255);
   }
-    private void wrapAround() {
+  private void wrapAround() {
     if (position.x < 0) {
       position.x = width;
     } 
@@ -390,8 +387,8 @@ public class Predator{
       position.y = 0;
     }
   }
-  private void chase(){
-    PVector change = new PVector(0,0);
+  private void chase() {
+    PVector change = new PVector(0, 0);
     change.add(cohesion());
     velocity.add(change);
     velocity.limit(MAX_SPEED_PREDATOR);
@@ -408,26 +405,26 @@ public class Predator{
     }
     if (totalChanges > 0) {
       average.div(totalChanges);
-      PVector toTarget = PVector.sub(average,this.position);
-      PVector change = PVector.sub(toTarget,this.velocity);
+      PVector toTarget = PVector.sub(average, this.position);
+      PVector change = PVector.sub(toTarget, this.velocity);
       change.limit(0.05);
       return change;
-    }else{
-      return new PVector(0,0);
+    } else {
+      return new PVector(0, 0);
     }
   }
 }
 
-public class Obstacle{
- PVector position;
-public Obstacle(float posX, float posY){
- position = new PVector(posX,posY);
-} 
-public void process(){
-  drawObstacle();
-}
-private void drawObstacle(){
- rect(position.x,position.y,4,4); 
-}
+public class Obstacle {
+  PVector position;
+  public Obstacle(float posX, float posY) {
+    position = new PVector(posX, posY);
+  } 
+  public void process() {
+    drawObstacle();
+  }
+  private void drawObstacle() {
+    rect(position.x, position.y, 4, 4);
+  }
 }
 
