@@ -42,6 +42,10 @@ public void setup() {
   for (int i = 0; i < 200; i++) {
     world.addBoid(random(width), random(height));
   }
+  
+    world.addPredator(random(width),random(height));
+    
+    world.addPredator(random(width),random(height));
 }
 private void displayText(PFont font,String text,float num,int x, int y){
   textFont(font,LABEL_FONT_SIZE);
@@ -129,13 +133,20 @@ public void draw() {
 
 public class World {
   ArrayList<Boid> boids = new ArrayList<Boid>();
+  ArrayList<Predator> predators = new ArrayList<Predator>();
   public void addBoid(float posX, float posY) {
     boids.add(new Boid(posX, posY));
+  }
+  public void addPredator(float posX,float posY){
+   predators.add(new Predator(posX,posY)); 
   }
   public void updateAll()
   {
     for (int i = 0; i < boids.size (); i++) {
       boids.get(i).process();
+    }
+    for(int i = 0; i < predators.size(); i++){
+     predators.get(i).process(); 
     }
   }
 }
@@ -250,6 +261,46 @@ public class Boid {
     }else{
       return new PVector(0,0);
     }
+  }
+  private PVector avoidPredator(){
+    PVector change = new PVector(0,0);
+    int totalChange = 0;
+   for(Predator predator : world.predators) {
+    if(this.position.dist(predator.position) < RANGE){
+      PVector fromTarget = PVector.sub(predator.position,this.position);
+      fromTarget.rotate(PI);
+      change.add(fromTarget);
+    }
+   }
+  if(totalChange > 0){
+   change.div(totalChange);
+  } 
+  return change;
+  }
+}
+public class Predator{
+  PVector position;
+  PVector velocity;
+
+  public Predator(float posX, float posY) {
+    position = new PVector(posX, posY); 
+    velocity = new PVector(0, 0);
+  }
+    public void process() {
+    drawPredator();
+  }
+  private void drawPredator() {
+    drawArrow(position.x, position.y, 4, velocity.heading());
+  }
+  private void drawArrow(float cx, float cy, int len, float angle) {
+    pushMatrix();
+    translate(cx, cy);
+    rotate(angle);
+    stroke(255,0,0);
+    line(len, 0, len - 4, -4);
+    line(len, 0, len - 4, 4);
+    popMatrix();
+    stroke(255);
   }
 }
 
