@@ -1,6 +1,5 @@
 package model;
 
-import java.util.ArrayList;
 
 public abstract class Individual
 {
@@ -12,8 +11,8 @@ public abstract class Individual
 		this.fitness = fitness;
 	}
 	public abstract void develop();
-	public abstract void crossOver(Individual individual);
+	public abstract Individual crossOver(Individual individual);
+	public abstract Individual clone();
 	public abstract void mutate();
 	public abstract void calcFitness();
-	public abstract ArrayList<Individual> generateChildren(Individual individual);
 }
