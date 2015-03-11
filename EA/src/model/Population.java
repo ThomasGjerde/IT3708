@@ -19,36 +19,48 @@ public class Population
 	int currentGen = 0;
 	Individual mostFitIndividual;
 	public Population(ArrayList<Individual> individuals){
-		this.individuals = individuals;
-		//nextGeneration.addAll(individuals);
+		//this.individuals = individuals;
+		nextGeneration.addAll(individuals);
 	}
 	public GenerationInfo evolve(){
 		currentGen++;
-		if(individuals.size() != Parameters.POPULATION_SIZE){
-			System.out.println("Mismatch: " + individuals.size() + " != " + Parameters.POPULATION_SIZE);
-		}
 		developAll();
 		calcPopulationFitness();
+		selectAdults();
 		reproduce();
 		mutateAll();
-		selectAdults();
+		System.out.println(currentGen + " " + highestFitness + " " + populationFitness + " " + sd);
 		return new GenerationInfo(currentGen, highestFitness, populationFitness, sd);
-	}
-	private void calcSD(){
-		double total = 0;
-		for(Individual individ : individuals){
-			total += (individ.getFitness() - populationFitness) * (individ.getFitness() - populationFitness);
-		}
-		total = total / (double)individuals.size();
-		sd = Math.sqrt(total);
 	}
 	private void mutateAll(){
 		for(Individual individ : nextGeneration){
 			individ.mutate();
 		}
 	}
+	private void developAll(){
+		for(Individual individ : nextGeneration){
+			individ.develop();
+		}
+	}
+	private void calcPopulationFitness(){
+		double popFit = 0;
+		for(Individual individ : nextGeneration){
+			individ.calcFitness();
+			popFit += individ.getFitness();
+			if(individ.getFitness() > highestFitness){
+				highestFitness = individ.getFitness();
+				mostFitIndividual = individ;
+				System.out.println("Most fit: " + highestFitness + " Gen: " + currentGen);
+				Utilities.printBoolArray(((OneMaxIndividual)mostFitIndividual).getGenotype());
+			}
+		}
+		popFit = popFit / (double)nextGeneration.size();
+		populationFitness = popFit;
+		calcSD();
+	}
 	private void reproduce(){
 		ArrayList<IndividualPair> parents = selectParents();
+		nextGeneration.clear();
 		for(IndividualPair pair : parents){
 			if(Math.random() < Parameters.CROSSOVER_RATE){
 				nextGeneration.add(pair.getA().crossOver(pair.getB()));
@@ -59,6 +71,16 @@ public class Population
 			}
 		}
 	}
+	
+	private void calcSD(){
+		double total = 0;
+		for(Individual individ : individuals){
+			total += (individ.getFitness() - populationFitness) * (individ.getFitness() - populationFitness);
+		}
+		total = total / (double)individuals.size();
+		sd = Math.sqrt(total);
+	}
+
 	public Individual getMostFit(){
 		return mostFitIndividual;
 	}
@@ -68,27 +90,8 @@ public class Population
 		}
 		return false;
 	}
-	public void developAll(){
-		for(Individual individ : individuals){
-			individ.develop();
-		}
-	}
-	public void calcPopulationFitness(){
-		double popFit = 0;
-		for(Individual individ : individuals){
-			individ.calcFitness();
-			popFit += individ.getFitness();
-			if(individ.getFitness() > highestFitness){
-				highestFitness = individ.getFitness();
-				mostFitIndividual = individ;
-				System.out.println("Most fit: " + highestFitness + " Gen: " + currentGen);
-				Utilities.printBoolArray(((OneMaxIndividual)mostFitIndividual).getGenotype());
-			}
-		}
-		popFit = popFit / (double)individuals.size();
-		populationFitness = popFit;
-		calcSD();
-	}
+
+
 	private ArrayList<Individual> sortIndividualList(ArrayList<Individual> list){
 		Collections.sort(list, new Comparator<Individual>(){
 		     public int compare(Individual o1, Individual o2){
@@ -195,7 +198,6 @@ public class Population
 		for(Individual individ : list){
 			totalFitness += individ.getFitness();
 		}
-		System.out.println("Total: " + totalFitness);
 		for(Individual individ : list){
 			int places = (int)((individ.getFitness() / totalFitness)*1000);
 			for(int i = 0; i < places; i++){
