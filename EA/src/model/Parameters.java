@@ -4,13 +4,13 @@ public class Parameters
 {
 	public static int GENERATIONS = 200;
 	
-	public static int ONE_MAX_VECTOR_LENGTH = 20;
-	public static double MUTATION_RATE = 0.2;
-	public static double CROSSOVER_RATE = 0.2;
-	public static boolean TWO_POINT_CROSSOVER = true;
-	public static int POPULATION_SIZE = 20;
-	public static int PARENT_PAIRS = 10;
-	public static AdultSelectionMode ADULT_SELECTION_MODE = AdultSelectionMode.MIXING;
+	public static int ONE_MAX_VECTOR_LENGTH = 40;
+	public static double MUTATION_RATE = 0.1;
+	public static double CROSSOVER_RATE = 0.7;
+	public static boolean TWO_POINT_CROSSOVER = false;
+	public static int POPULATION_SIZE = 200;
+	public static int PARENT_PAIRS = 300;
+	public static AdultSelectionMode ADULT_SELECTION_MODE = AdultSelectionMode.OVER_PRODUCTION;
 	public static double TARGET_FITNESS = 1;
 	
 	/*

@@ -1,5 +1,7 @@
 package onemax;
 import java.util.Random;
+
+import util.Utilities;
 import model.Individual;
 import model.Parameters;
 
@@ -42,7 +44,10 @@ public class OneMaxIndividual extends Individual
 	{
 		Random rand = new Random();
 		boolean[] newGenotype = new boolean[Parameters.ONE_MAX_VECTOR_LENGTH];
-		
+		//System.out.println("Parent1:");
+		//Utilities.printBoolArray(this.genotype);
+		//System.out.println("Parent2:");
+		//Utilities.printBoolArray(((OneMaxIndividual)individual).getGenotype());
 		if(Parameters.TWO_POINT_CROSSOVER){
 			int crossAt1 = 1 + rand.nextInt(Parameters.ONE_MAX_VECTOR_LENGTH - 2); //Check this
 			int crossAt2 = crossAt1 + rand.nextInt((Parameters.ONE_MAX_VECTOR_LENGTH - 1) - crossAt1); //and this
@@ -64,6 +69,8 @@ public class OneMaxIndividual extends Individual
 				newGenotype[i] = ((OneMaxIndividual)individual).getGenotype()[i];
 			}
 		}
+		//System.out.println("Child:");
+		//Utilities.printBoolArray(newGenotype);
 		return new OneMaxIndividual(newGenotype);
 		
 	}
@@ -88,7 +95,7 @@ public class OneMaxIndividual extends Individual
 				numOnes++;
 			}
 		}
-		this.setFitness(numOnes/phenotype.length);
+		this.setFitness(((double)numOnes)/phenotype.length);
 	}
 	@Override
 	public Individual clone()
