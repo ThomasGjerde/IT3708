@@ -29,8 +29,8 @@ public class Population
 		developAll();
 		calcPopulationFitness();
 		reproduce();
-		selectAdults();
 		mutateAll();
+		selectAdults();
 		return new GenerationInfo(currentGen, highestFitness, populationFitness, sd);
 	}
 	private void calcSD(){
