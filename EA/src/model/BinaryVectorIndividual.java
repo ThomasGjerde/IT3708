@@ -39,25 +39,25 @@ public abstract class BinaryVectorIndividual extends Individual
 
 	protected boolean[] runCrossOver(boolean[] partnersGenotype){
 		Random rand = new Random();
-		boolean[] newGenotype = new boolean[Parameters.VECTOR_LENGTH];
+		boolean[] newGenotype = new boolean[this.genotype.length];
 		if(Parameters.TWO_POINT_CROSSOVER){
-			int crossAt1 = 1 + rand.nextInt(Parameters.VECTOR_LENGTH - 2);
-			int crossAt2 = crossAt1 + rand.nextInt((Parameters.VECTOR_LENGTH - 1) - crossAt1);
+			int crossAt1 = 1 + rand.nextInt(this.genotype.length - 2);
+			int crossAt2 = crossAt1 + rand.nextInt((this.genotype.length - 1) - crossAt1);
 			for(int i = 0; i < crossAt1; i++){
 				newGenotype[i] = this.genotype[i];
 			}
 			for(int i = crossAt1; i < crossAt2; i++){
 				newGenotype[i] = partnersGenotype[i];
 			}
-			for(int i = crossAt2; i < Parameters.VECTOR_LENGTH; i++){
+			for(int i = crossAt2; i < this.genotype.length; i++){
 				newGenotype[i] = this.genotype[i];
 			}
 		}else{
-			int crossAt = 1 + rand.nextInt(Parameters.VECTOR_LENGTH - 1);
+			int crossAt = 1 + rand.nextInt(this.genotype.length - 1);
 			for(int i = 0; i < crossAt; i++){
 				newGenotype[i] = this.genotype[i];
 			}
-			for(int i = crossAt; i < Parameters.VECTOR_LENGTH; i++){
+			for(int i = crossAt; i < this.genotype.length; i++){
 				newGenotype[i] = partnersGenotype[i];
 			}
 		}

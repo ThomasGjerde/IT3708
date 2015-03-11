@@ -11,16 +11,14 @@ public class Parameters
 	public static int POPULATION_SIZE = 50;
 	public static int PARENT_PAIRS = 30;
 	public static AdultSelectionMode ADULT_SELECTION_MODE = AdultSelectionMode.OVER_PRODUCTION;
-	public static double TARGET_FITNESS = 1.1;
-	
+	public static double TARGET_FITNESS = 1;
 	public static ParentSelectionMode PARENT_SELECTION_MODE = ParentSelectionMode.SIGMA_SCALING;
-	
 	public static int TOURNAMENT_SIZE = 4;
 	public static double TOURNAMENT_SELECTION_PROBABILITY = 0.8;
-	
-	public static int LOLZ_CUTOFF = 4;
-	
-	public static ProblemType PROBLEM_TYPE = ProblemType.LOLZ;
+	public static int LOLZ_CUTOFF = 4;	
+	public static ProblemType PROBLEM_TYPE = ProblemType.ONE_MAX;
+	public static int SYMBOL_SIZE = 4;
+	public static SurprisingSequenceType SURPRISING_SEQUENCE_TYPE = SurprisingSequenceType.LOCALLY;
 	
 	public static void setParameter(String input){
 		String[] data = input.split("=");
