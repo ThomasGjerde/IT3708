@@ -2,8 +2,8 @@ package model;
 
 public enum ParentSelectionMode
 {
-	TournamentSelection,
-	FitnessProportionate,
-	SigmaScaling,
-	StochasticUniform
+	TOURNAMENT_SELECTION,
+	FITNESS_PROPORTIONATE,
+	SIGMA_SCALING,
+	STOCHASTIC_UNIFORM
 }

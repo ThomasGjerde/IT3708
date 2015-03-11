@@ -125,13 +125,13 @@ public class Population
 	 * Start parent selections
 	 */
 	private ArrayList<IndividualPair> selectParents(){
-		if(Parameters.PARENT_SELECTION_MODE == ParentSelectionMode.TournamentSelection){
+		if(Parameters.PARENT_SELECTION_MODE == ParentSelectionMode.TOURNAMENT_SELECTION){
 			return selectTournament();
-		}else if(Parameters.PARENT_SELECTION_MODE == ParentSelectionMode.FitnessProportionate){
+		}else if(Parameters.PARENT_SELECTION_MODE == ParentSelectionMode.FITNESS_PROPORTIONATE){
 			return selectFitnessProportionate();
-		}else if(Parameters.PARENT_SELECTION_MODE == ParentSelectionMode.SigmaScaling){
+		}else if(Parameters.PARENT_SELECTION_MODE == ParentSelectionMode.SIGMA_SCALING){
 			return selectSigmaScaling();
-		}else if(Parameters.PARENT_SELECTION_MODE == ParentSelectionMode.StochasticUniform){
+		}else if(Parameters.PARENT_SELECTION_MODE == ParentSelectionMode.STOCHASTIC_UNIFORM){
 			return selectStochasticUniform();
 		}
 		

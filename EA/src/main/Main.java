@@ -21,14 +21,13 @@ public class Main
 	 */
 	public static void main(String[] args)
 	{
-		/*
-		ArrayList<GenerationInfo> giList = new ArrayList<GenerationInfo>();
-		for(int i = 0; i < 200; i++){
-			giList.add(new GenerationInfo(i, Math.random(), Math.random(), Math.random()));
+		//Set parameters
+		for(String s : args){
+			Parameters.setParameter(s);
 		}
-		*/
-
-		// TODO Auto-generated method stub
+		
+		
+		//Generate initial population
 		ArrayList<Individual> individuals = new ArrayList<Individual>();
 		for(int i = 0; i < Parameters.POPULATION_SIZE; i++){
 			individuals.add(OneMaxIndividual.generateRandomIndividual());
