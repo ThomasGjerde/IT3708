@@ -4,7 +4,7 @@ public class Parameters
 {
 	public static int GENERATIONS = 200;
 	
-	public static int ONE_MAX_VECTOR_LENGTH = 40;
+	public static int VECTOR_LENGTH = 40;
 	public static double MUTATION_RATE = 0.01;
 	public static double CROSSOVER_RATE = 0.7;
 	public static boolean TWO_POINT_CROSSOVER = false;
@@ -23,7 +23,6 @@ public class Parameters
 	
 	
 	
-	
 	public static void setParameter(String input){
 		String[] data = input.split("=");
 		if(data.length != 2){
@@ -31,7 +30,7 @@ public class Parameters
 			System.exit(1);
 		}
 		if(data[0].toUpperCase().equals("ONE_MAX_VECTOR_LENGTH")){
-			ONE_MAX_VECTOR_LENGTH = Integer.parseInt(data[1]);
+			VECTOR_LENGTH = Integer.parseInt(data[1]);
 			System.out.println("ONE_MAX_VECTOR_LENGTH Set");
 		}else if(data[0].toUpperCase().equals("GENERATIONS")){
 			GENERATIONS = Integer.parseInt(data[1]);

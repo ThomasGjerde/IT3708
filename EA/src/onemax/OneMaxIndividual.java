@@ -15,9 +15,9 @@ public class OneMaxIndividual extends BinaryVectorIndividual
 	@Override
 	public Individual clone()
 	{
-		boolean[] newGenotype = new boolean[Parameters.ONE_MAX_VECTOR_LENGTH];
+		boolean[] newGenotype = new boolean[Parameters.VECTOR_LENGTH];
 		//Not sure if this is necessary, doing it anyway
-		for(int i = 0; i < Parameters.ONE_MAX_VECTOR_LENGTH; i++){
+		for(int i = 0; i < Parameters.VECTOR_LENGTH; i++){
 			newGenotype[i] = this.genotype[i];
 		}
 		return new OneMaxIndividual(newGenotype);
@@ -28,7 +28,7 @@ public class OneMaxIndividual extends BinaryVectorIndividual
 		this.genotype = genotype;
 	}
 	public static OneMaxIndividual generateRandomIndividual(){
-		boolean[] newGenotype = new boolean[Parameters.ONE_MAX_VECTOR_LENGTH];
+		boolean[] newGenotype = new boolean[Parameters.VECTOR_LENGTH];
 		Random r = new Random();
 		for(int i = 0; i < newGenotype.length; i++){
 			newGenotype[i] = r.nextBoolean();
