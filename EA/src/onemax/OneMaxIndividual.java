@@ -107,4 +107,15 @@ public class OneMaxIndividual extends Individual
 		}
 		return new OneMaxIndividual(newGenotype);
 	}
+	@Override
+	public String toString()
+	{
+		String s = "[";
+		for(int i : phenotype){
+			s += i;
+			s += ",";
+		}
+		s += "]";
+		return s;
+	}
 }

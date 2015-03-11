@@ -15,4 +15,5 @@ public abstract class Individual
 	public abstract Individual clone();
 	public abstract void mutate();
 	public abstract void calcFitness();
+	public abstract String toString();
 }

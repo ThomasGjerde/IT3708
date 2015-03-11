@@ -25,11 +25,12 @@ public class Population
 	public GenerationInfo evolve(){
 		currentGen++;
 		developAll();
-		calcPopulationFitness();
+		calcAllFitness();
 		selectAdults();
+		calcGenerationInfo();
 		reproduce();
 		mutateAll();
-		System.out.println(currentGen + " " + highestFitness + " " + populationFitness + " " + sd);
+		outputLog();
 		return new GenerationInfo(currentGen, highestFitness, populationFitness, sd);
 	}
 	private void mutateAll(){
@@ -42,19 +43,24 @@ public class Population
 			individ.develop();
 		}
 	}
-	private void calcPopulationFitness(){
-		double popFit = 0;
+	private void calcAllFitness(){
 		for(Individual individ : nextGeneration){
+			individ.calcFitness();
+		}
+	}
+	private void calcGenerationInfo(){
+		double popFit = 0;
+		for(Individual individ : individuals){
 			individ.calcFitness();
 			popFit += individ.getFitness();
 			if(individ.getFitness() > highestFitness){
 				highestFitness = individ.getFitness();
 				mostFitIndividual = individ;
-				System.out.println("Most fit: " + highestFitness + " Gen: " + currentGen);
-				Utilities.printBoolArray(((OneMaxIndividual)mostFitIndividual).getGenotype());
+				//System.out.println("Most fit: " + highestFitness + " Gen: " + currentGen);
+				//Utilities.printBoolArray(((OneMaxIndividual)mostFitIndividual).getGenotype());
 			}
 		}
-		popFit = popFit / (double)nextGeneration.size();
+		popFit = popFit / (double)individuals.size();
 		populationFitness = popFit;
 		calcSD();
 	}
@@ -71,15 +77,6 @@ public class Population
 			}
 		}
 	}
-	
-	private void calcSD(){
-		double total = 0;
-		for(Individual individ : individuals){
-			total += (individ.getFitness() - populationFitness) * (individ.getFitness() - populationFitness);
-		}
-		total = total / (double)individuals.size();
-		sd = Math.sqrt(total);
-	}
 
 	public Individual getMostFit(){
 		return mostFitIndividual;
@@ -91,21 +88,6 @@ public class Population
 		return false;
 	}
 
-
-	private ArrayList<Individual> sortIndividualList(ArrayList<Individual> list){
-		Collections.sort(list, new Comparator<Individual>(){
-		     public int compare(Individual o1, Individual o2){
-		    	 if(o1.getFitness() > o2.getFitness()){
-		    		 return -1;
-		    	 }else if(o1.getFitness() < o2.getFitness()){
-		    		 return 1;
-		    	 }else{
-		    		 return 0;
-		    	 }
-		     }
-		});
-		return list;
-	}
 	private void selectAdults(){
 		if(Parameters.ADULT_SELECTION_MODE == AdultSelectionMode.FULL){
 			selectFull();
@@ -212,7 +194,48 @@ public class Population
 		}
 		return contestants.get(pos);
 	}
+	private ArrayList<IndividualPair> selectSigmaScaling(){
+		return null;
+	}
 	/*
 	 * End parent selections
+	 */
+	
+	/*
+	 * Start util methods
+	 */
+	
+	private ArrayList<Individual> sortIndividualList(ArrayList<Individual> list){
+		Collections.sort(list, new Comparator<Individual>(){
+		     public int compare(Individual o1, Individual o2){
+		    	 if(o1.getFitness() > o2.getFitness()){
+		    		 return -1;
+		    	 }else if(o1.getFitness() < o2.getFitness()){
+		    		 return 1;
+		    	 }else{
+		    		 return 0;
+		    	 }
+		     }
+		});
+		return list;
+	}
+	private void calcSD(){
+		double total = 0;
+		for(Individual individ : individuals){
+			total += (individ.getFitness() - populationFitness) * (individ.getFitness() - populationFitness);
+		}
+		total = total / (double)individuals.size();
+		sd = Math.sqrt(total);
+	}
+	private void outputLog(){
+		System.out.println("----------------------------------------------------");
+		System.out.println("Current gen: " + currentGen);
+		System.out.println("Highest fitness: " + highestFitness);
+		System.out.println("SD: " + sd);
+		System.out.println("Best individual: " + mostFitIndividual.toString());
+		System.out.println("----------------------------------------------------");
+	}
+	/*
+	 * End util methods
 	 */
 }
