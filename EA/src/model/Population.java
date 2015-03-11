@@ -129,8 +129,11 @@ public class Population
 			return selectTournament();
 		}else if(Parameters.PARENT_SELECTION_MODE == ParentSelectionMode.FitnessProportionate){
 			return selectFitnessProportionate();
+		}else if(Parameters.PARENT_SELECTION_MODE == ParentSelectionMode.SigmaScaling){
+			return selectSigmaScaling();
+		}else if(Parameters.PARENT_SELECTION_MODE == ParentSelectionMode.StochasticUniform){
+			return selectStochasticUniform();
 		}
-		//Add rest of selections
 		
 		System.out.println("No Parent selection mode chosen, defaulting to tournament selection");
 		return selectTournament();
@@ -164,16 +167,16 @@ public class Population
 	private ArrayList<IndividualPair> selectFitnessProportionate(){
 		ArrayList<IndividualPair> pairList = new ArrayList<IndividualPair>();
 		while(pairList.size() < Parameters.PARENT_PAIRS){
-			Individual parent1 = runRoulette(individuals);
-			Individual parent2 = runRoulette(individuals);
+			Individual parent1 = runRoulette(individuals,false);
+			Individual parent2 = runRoulette(individuals,false);
 			while(parent1 == parent2){
-				parent2 = runRoulette(individuals);
+				parent2 = runRoulette(individuals,false);
 			}
 			pairList.add(new IndividualPair(parent1, parent2));
 		}
 		return pairList;
 	}
-	private Individual runRoulette(ArrayList<Individual> list){
+	private Individual runRoulette(ArrayList<Individual> list, boolean sigmaMode){
 		double totalFitness = 0;
 		int currentPos = 0;
 		HashMap<Integer,Individual> contestants = new HashMap<Integer, Individual>();
@@ -181,7 +184,13 @@ public class Population
 			totalFitness += individ.getFitness();
 		}
 		for(Individual individ : list){
-			int places = (int)((individ.getFitness() / totalFitness)*1000);
+			int places;
+			if(sigmaMode){
+				places = (int)((sigmaScaleValue(individ.getFitness()) / totalFitness)*1000);
+			}else{
+				places = (int)((individ.getFitness() / totalFitness)*1000);
+			}
+			
 			for(int i = 0; i < places; i++){
 				contestants.put(currentPos,individ);
 				currentPos++;
@@ -194,8 +203,40 @@ public class Population
 		}
 		return contestants.get(pos);
 	}
+	private double sigmaScaleValue(double value){
+		if(sd != 0){
+			return 1 + ((value - populationFitness)/(2*sd));
+		}else{
+			return 1;
+		}
+	}
 	private ArrayList<IndividualPair> selectSigmaScaling(){
-		return null;
+		ArrayList<IndividualPair> pairList = new ArrayList<IndividualPair>();
+		while(pairList.size() < Parameters.PARENT_PAIRS){
+			Individual parent1 = runRoulette(individuals,true);
+			Individual parent2 = runRoulette(individuals,true);
+			while(parent1 == parent2){
+				parent2 = runRoulette(individuals,true);
+			}
+			pairList.add(new IndividualPair(parent1, parent2));
+		}
+		return pairList;
+	}
+	private ArrayList<IndividualPair> selectStochasticUniform(){
+		ArrayList<IndividualPair> pairList = new ArrayList<IndividualPair>();
+		while(pairList.size() < Parameters.PARENT_PAIRS){
+			Individual parent1 = randomSelect();
+			Individual parent2 = randomSelect();
+			while(parent1 == parent2){
+				parent2 = randomSelect();
+			}
+			pairList.add(new IndividualPair(parent1, parent2));
+		}
+		return pairList;
+	}
+	private Individual randomSelect(){
+		Random rand = new Random();
+		return individuals.get(rand.nextInt(individuals.size()));
 	}
 	/*
 	 * End parent selections

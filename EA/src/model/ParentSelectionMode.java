@@ -4,5 +4,6 @@ public enum ParentSelectionMode
 {
 	TournamentSelection,
 	FitnessProportionate,
-	SigmaScaling
+	SigmaScaling,
+	StochasticUniform
 }

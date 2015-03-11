@@ -115,6 +115,9 @@ public class OneMaxIndividual extends Individual
 			s += i;
 			s += ",";
 		}
+		if(s.length() > 0){
+			s = s.substring(0,s.length() -1);
+		}
 		s += "]";
 		return s;
 	}

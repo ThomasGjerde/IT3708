@@ -8,6 +8,9 @@ public class Utilities
 			s += b ? "1" : "0";
 			s += ",";
 		}
+		if(s.length() > 0){
+			s = s.substring(0,s.length() -1);
+		}
 		s += "]";
 		System.out.println(s);
 	}

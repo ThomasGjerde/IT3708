@@ -16,7 +16,7 @@ public class Parameters
 	/*
 	 * Parent selections
 	 */
-	public static ParentSelectionMode PARENT_SELECTION_MODE = ParentSelectionMode.FitnessProportionate;
+	public static ParentSelectionMode PARENT_SELECTION_MODE = ParentSelectionMode.StochasticUniform;
 	
 	public static int TOURNAMENT_SIZE = 4;
 	public static double TOURNAMENT_SELECTION_PROBABILITY = 0.8;
