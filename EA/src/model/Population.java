@@ -25,12 +25,19 @@ public class Population
 	public GenerationInfo evolve(){
 		currentGen++;
 		developAll();
+		System.out.println("Dev");
 		calcAllFitness();
+		System.out.println("Calc");
 		selectAdults();
+		System.out.println("Select");
 		calcGenerationInfo();
+		System.out.println("Stats");
 		reproduce();
+		System.out.println("Reprod");
 		mutateAll();
+		System.out.println("Mutate");
 		outputLog();
+		System.out.println("Log");
 		return new GenerationInfo(currentGen, highestFitness, populationFitness, sd);
 	}
 	private void mutateAll(){
@@ -65,7 +72,9 @@ public class Population
 		calcSD();
 	}
 	private void reproduce(){
+		System.out.println("PreSelect");
 		ArrayList<IndividualPair> parents = selectParents();
+		System.out.println("PostSelect");
 		nextGeneration.clear();
 		for(IndividualPair pair : parents){
 			if(Math.random() < Parameters.CROSSOVER_RATE){
@@ -178,15 +187,24 @@ public class Population
 	}
 	private Individual runRoulette(ArrayList<Individual> list, boolean sigmaMode){
 		double totalFitness = 0;
+		double localAvg = 0;
+		double localSd = 0;
 		int currentPos = 0;
 		HashMap<Integer,Individual> contestants = new HashMap<Integer, Individual>();
 		for(Individual individ : list){
 			totalFitness += individ.getFitness();
 		}
+		localAvg = totalFitness / list.size();
+		double sdTotal = 0;
+		for(Individual individ : list){
+			sdTotal += (individ.getFitness() - localAvg) * (individ.getFitness() - localAvg);
+		}
+		sdTotal = sdTotal / (double)list.size();
+		sd = Math.sqrt(sdTotal);
 		for(Individual individ : list){
 			int places;
 			if(sigmaMode){
-				places = (int)((sigmaScaleValue(individ.getFitness()) / totalFitness)*1000);
+				places = (int)((sigmaScaleValue(individ.getFitness(),localSd,localAvg) / totalFitness)*1000);
 			}else{
 				places = (int)((individ.getFitness() / totalFitness)*1000);
 			}
@@ -203,9 +221,9 @@ public class Population
 		}
 		return contestants.get(pos);
 	}
-	private double sigmaScaleValue(double value){
+	private double sigmaScaleValue(double value, double sd, double avg){
 		if(sd != 0){
-			return 1 + ((value - populationFitness)/(2*sd));
+			return 1 + ((value - avg)/(2*sd));
 		}else{
 			return 1;
 		}
@@ -213,10 +231,12 @@ public class Population
 	private ArrayList<IndividualPair> selectSigmaScaling(){
 		ArrayList<IndividualPair> pairList = new ArrayList<IndividualPair>();
 		while(pairList.size() < Parameters.PARENT_PAIRS){
-			Individual parent1 = runRoulette(individuals,true);
-			Individual parent2 = runRoulette(individuals,true);
+			ArrayList<Individual> list = new ArrayList<Individual>(individuals);
+			Individual parent1 = runRoulette(list,true);
+			list.remove(parent1);
+			Individual parent2 = runRoulette(list,true);
 			while(parent1 == parent2){
-				parent2 = runRoulette(individuals,true);
+				parent2 = runRoulette(list,true);
 			}
 			pairList.add(new IndividualPair(parent1, parent2));
 		}

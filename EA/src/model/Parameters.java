@@ -11,17 +11,16 @@ public class Parameters
 	public static int POPULATION_SIZE = 50;
 	public static int PARENT_PAIRS = 30;
 	public static AdultSelectionMode ADULT_SELECTION_MODE = AdultSelectionMode.OVER_PRODUCTION;
-	public static double TARGET_FITNESS = 1;
+	public static double TARGET_FITNESS = 1.1;
 	
-	/*
-	 * Parent selections
-	 */
 	public static ParentSelectionMode PARENT_SELECTION_MODE = ParentSelectionMode.SIGMA_SCALING;
 	
 	public static int TOURNAMENT_SIZE = 4;
 	public static double TOURNAMENT_SELECTION_PROBABILITY = 0.8;
 	
+	public static int LOLZ_CUTOFF = 4;
 	
+	public static ProblemType PROBLEM_TYPE = ProblemType.LOLZ;
 	
 	public static void setParameter(String input){
 		String[] data = input.split("=");
@@ -84,6 +83,20 @@ public class Parameters
 		}else if(data[0].toUpperCase().equals("TOURNAMENT_SELECTION_PROBABILITY")){
 			TOURNAMENT_SELECTION_PROBABILITY = Double.parseDouble(data[1]);
 			System.out.println("TOURNAMENT_SELECTION_PROBABILITY Set");
+		}else if(data[0].toUpperCase().equals("LOLZ_CUTOFF")){
+			LOLZ_CUTOFF = Integer.parseInt(data[1]);
+			System.out.println("LOLZ_CUTOFF Set");
+		}else if(data[0].toUpperCase().equals("PROBLEM_TYPE")){
+			if(data[1].toUpperCase().equals("ONE_MAX")){
+				PROBLEM_TYPE = ProblemType.ONE_MAX;
+				System.out.println("ONE_MAX Set");
+			}else if(data[1].toUpperCase().equals("LOLZ")){
+				PROBLEM_TYPE = ProblemType.LOLZ;
+				System.out.println("LOLZ");
+			}else if(data[1].toUpperCase().equals("SURPRISING_SEQUENCES")){
+				PROBLEM_TYPE = ProblemType.SURPRISING_SEQUENCES;
+				System.out.println("SURPRISING_SEQUENCES Set");
+			}
 		}
 		
 	}
