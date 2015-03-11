@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Random;
 
 import onemax.OneMaxIndividual;
@@ -141,6 +142,8 @@ public class Population
 	private ArrayList<IndividualPair> selectParents(){
 		if(Parameters.PARENT_SELECTION_MODE == ParentSelectionMode.TournamentSelection){
 			return selectTournament();
+		}else if(Parameters.PARENT_SELECTION_MODE == ParentSelectionMode.FitnessProportionate){
+			return selectFitnessProportionate();
 		}
 		//Add rest of selections
 		
@@ -158,11 +161,6 @@ public class Population
 			parentPairs.add(new IndividualPair(parent1, parent2));
 			
 		}
-		/*
-		for(IndividualPair ip : parentPairs){
-			Utilities.printBoolArray((((OneMaxIndividual)ip.getA()).getGenotype()));
-		}
-		*/
 		return parentPairs;
 	}
 	private Individual runTournament(){
@@ -178,10 +176,40 @@ public class Population
 		return currentTournament.get(0);
 	}
 	
-	private ArrayList<Individual> selectFitnessProportionate(){
-		return null;
+	private ArrayList<IndividualPair> selectFitnessProportionate(){
+		ArrayList<IndividualPair> pairList = new ArrayList<IndividualPair>();
+		while(pairList.size() < Parameters.PARENT_PAIRS){
+			Individual parent1 = runRoulette(individuals);
+			Individual parent2 = runRoulette(individuals);
+			while(parent1 == parent2){
+				parent2 = runRoulette(individuals);
+			}
+			pairList.add(new IndividualPair(parent1, parent2));
+		}
+		return pairList;
 	}
-	
+	private Individual runRoulette(ArrayList<Individual> list){
+		double totalFitness = 0;
+		int currentPos = 0;
+		HashMap<Integer,Individual> contestants = new HashMap<Integer, Individual>();
+		for(Individual individ : list){
+			totalFitness += individ.getFitness();
+		}
+		System.out.println("Total: " + totalFitness);
+		for(Individual individ : list){
+			int places = (int)((individ.getFitness() / totalFitness)*1000);
+			for(int i = 0; i < places; i++){
+				contestants.put(currentPos,individ);
+				currentPos++;
+			}
+		}
+		Random rand = new Random();
+		int pos = rand.nextInt(1001);
+		while(!contestants.containsKey(pos)){
+			pos = rand.nextInt(1001);
+		}
+		return contestants.get(pos);
+	}
 	/*
 	 * End parent selections
 	 */
