@@ -58,7 +58,8 @@ public class SurprisingSequensesIndividual extends BinaryVectorIndividual
 			}
 			if(errors != 0){
 				errors = errors / 2; //Due to symmetric errors checking
-				this.setFitness((double)1 / (double)errors);
+
+				this.setFitness((double)1 / (double)(errors+1));
 			}else{
 				this.setFitness(1.0);
 			}
@@ -80,7 +81,7 @@ public class SurprisingSequensesIndividual extends BinaryVectorIndividual
 			}
 			if(errors != 0){
 				errors = errors / 2; //Due to symmetric errors checking
-				this.setFitness((double)1 / (double)errors);
+				this.setFitness((double)1 / (double)(errors+1));
 			}else{
 				this.setFitness(1.0);
 			}

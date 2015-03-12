@@ -6,8 +6,6 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Random;
 
-import onemax.OneMaxIndividual;
-import util.Utilities;
 
 public class Population
 {
@@ -19,7 +17,6 @@ public class Population
 	int currentGen = 0;
 	Individual mostFitIndividual;
 	public Population(ArrayList<Individual> individuals){
-		//this.individuals = individuals;
 		nextGeneration.addAll(individuals);
 	}
 	public GenerationInfo evolve(){

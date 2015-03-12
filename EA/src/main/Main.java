@@ -44,6 +44,7 @@ public class Main
 				lastResult = result;
 				giList = ea.getGiList();
 				Parameters.VECTOR_LENGTH++;
+				System.out.println("Trying length: " + Parameters.VECTOR_LENGTH);
 				result = ea.run(generateIndividuals());
 			}
 			showGraph(giList);

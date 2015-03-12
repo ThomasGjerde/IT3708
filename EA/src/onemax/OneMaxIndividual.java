@@ -40,8 +40,9 @@ public class OneMaxIndividual extends BinaryVectorIndividual
 	public void calcFitness()
 	{
 		int numOnes = 0;
+		//int[] target = {1,0,1,0,1,0,1,0,0,1,1,0,1,0,1,0,1,0,0,1,1,0,1,0,1,0,1,0,0,1,1,0,1,0,1,0,1,0,0,1};
 		for(int i = 0; i < phenotype.length; i++){
-			if(phenotype[i] == 1){
+			if(phenotype[i] == 1){ //target[i]){
 				numOnes++;
 			}
 		}
