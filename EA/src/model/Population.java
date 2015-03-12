@@ -25,19 +25,12 @@ public class Population
 	public GenerationInfo evolve(){
 		currentGen++;
 		developAll();
-		System.out.println("Dev");
 		calcAllFitness();
-		System.out.println("Calc");
 		selectAdults();
-		System.out.println("Select");
 		calcGenerationInfo();
-		System.out.println("Stats");
 		reproduce();
-		System.out.println("Reprod");
 		mutateAll();
-		System.out.println("Mutate");
 		outputLog();
-		System.out.println("Log");
 		return new GenerationInfo(currentGen, highestFitness, populationFitness, sd);
 	}
 	private void mutateAll(){
@@ -72,9 +65,7 @@ public class Population
 		calcSD();
 	}
 	private void reproduce(){
-		System.out.println("PreSelect");
 		ArrayList<IndividualPair> parents = selectParents();
-		System.out.println("PostSelect");
 		nextGeneration.clear();
 		for(IndividualPair pair : parents){
 			if(Math.random() < Parameters.CROSSOVER_RATE){

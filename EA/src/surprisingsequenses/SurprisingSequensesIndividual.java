@@ -1,5 +1,6 @@
 package surprisingsequenses;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import model.BinaryVectorIndividual;
@@ -40,7 +41,25 @@ public class SurprisingSequensesIndividual extends BinaryVectorIndividual
 	@Override
 	public void calcFitness()
 	{
-		// TODO Auto-generated method stub
+		ArrayList<String> substrings = new ArrayList<String>();
+		for(int i = 0; i < phenotype.length-1; i++){
+			substrings.add(phenotype[i] + "" + phenotype[i+1]);
+		}
+		int errors = 0;
+		for(String s : substrings){
+			for(String s2 : substrings){
+				if(s != s2 && s.equals(s2)){
+					errors++;
+				}
+			}
+		}
+		if(errors != 0){
+			errors = errors / 2; //Due to symmetric errors checking
+		}
+		this.setFitness((double)1 / (double)(errors + 1));
+		
+		
+		
 		
 	}
 

@@ -7,6 +7,7 @@ import org.jfree.ui.RefineryUtilities;
 
 import onemax.OneMaxIndividual;
 import plot.BarChart_AWT;
+import surprisingsequenses.SurprisingSequensesIndividual;
 import util.Utilities;
 
 import lolz.LolzIndividual;
@@ -30,27 +31,47 @@ public class Main
 		
 		
 		//Generate initial population
+		ArrayList<Individual> individuals = generateIndividuals();
+		EA ea = new EA();
+		if(Parameters.PROBLEM_TYPE == ProblemType.LOLZ || Parameters.PROBLEM_TYPE == ProblemType.ONE_MAX){
+			ea.run(individuals);
+			showGraph(ea.getGiList());
+		}else if(Parameters.PROBLEM_TYPE == ProblemType.SURPRISING_SEQUENCES){
+			Individual result = ea.run(individuals);
+			Individual lastResult = null;
+			ArrayList<GenerationInfo> giList = new ArrayList<GenerationInfo>();
+			while(result != null){
+				lastResult = result;
+				giList = ea.getGiList();
+				Parameters.VECTOR_LENGTH++;
+				result = ea.run(generateIndividuals());
+			}
+			showGraph(giList);
+			System.out.println("Max length: " + Parameters.VECTOR_LENGTH);
+			System.out.println(((SurprisingSequensesIndividual)lastResult).toString());
+		}
+		
+		
+
+	}
+	private static void showGraph(ArrayList<GenerationInfo> list){
+	      BarChart_AWT chart = new BarChart_AWT(list);
+	      chart.pack( );        
+	      RefineryUtilities.centerFrameOnScreen( chart );        
+	      chart.setVisible( true ); 
+	}
+	private static ArrayList<Individual> generateIndividuals(){
 		ArrayList<Individual> individuals = new ArrayList<Individual>();
 		for(int i = 0; i < Parameters.POPULATION_SIZE; i++){
 			if(Parameters.PROBLEM_TYPE == ProblemType.ONE_MAX){
 				individuals.add(OneMaxIndividual.generateRandomIndividual());
 			}else if(Parameters.PROBLEM_TYPE == ProblemType.LOLZ){
 				individuals.add(LolzIndividual.generateRandomIndividual());
+			}else if(Parameters.PROBLEM_TYPE == ProblemType.SURPRISING_SEQUENCES){
+				individuals.add(SurprisingSequensesIndividual.generateRandomIndividual());
 			}
-			
 		}
-		EA ea = new EA();
-		Individual result = ea.run(individuals);
-		if(result != null){
-			//Utilities.printBoolArray(result.getGenotype());
-		}else{
-			System.out.println("No solution");
-		}
-		
-	      BarChart_AWT chart = new BarChart_AWT(ea.getGiList());
-	      chart.pack( );        
-	      RefineryUtilities.centerFrameOnScreen( chart );        
-	      chart.setVisible( true ); 
+		return individuals;
 	}
 
 }
