@@ -6,6 +6,8 @@ import java.util.Random;
 import model.BinaryVectorIndividual;
 import model.Individual;
 import model.Parameters;
+import model.StringIntPair;
+import model.SurprisingSequenceType;
 
 public class SurprisingSequensesIndividual extends BinaryVectorIndividual
 {
@@ -41,22 +43,49 @@ public class SurprisingSequensesIndividual extends BinaryVectorIndividual
 	@Override
 	public void calcFitness()
 	{
-		ArrayList<String> substrings = new ArrayList<String>();
-		for(int i = 0; i < phenotype.length-1; i++){
-			substrings.add(phenotype[i] + "" + phenotype[i+1]);
-		}
-		int errors = 0;
-		for(String s : substrings){
-			for(String s2 : substrings){
-				if(s != s2 && s.equals(s2)){
-					errors++;
+		if(Parameters.SURPRISING_SEQUENCE_TYPE == SurprisingSequenceType.LOCALLY){
+			ArrayList<String> substrings = new ArrayList<String>();
+			for(int i = 0; i < phenotype.length-1; i++){
+				substrings.add(phenotype[i] + "" + phenotype[i+1]);
+			}
+			int errors = 0;
+			for(String s : substrings){
+				for(String s2 : substrings){
+					if(s != s2 && s.equals(s2)){
+						errors++;
+					}
 				}
 			}
+			if(errors != 0){
+				errors = errors / 2; //Due to symmetric errors checking
+				this.setFitness((double)1 / (double)errors);
+			}else{
+				this.setFitness(1.0);
+			}
+			
+		}else{
+			ArrayList<StringIntPair> stringList = new ArrayList<StringIntPair>();
+			for(int i = 0; i < phenotype.length-1; i++){
+				for(int j = i + 1; j < phenotype.length; j++){
+					stringList.add(new StringIntPair(phenotype[i] + "" + phenotype[j], j-i-1));
+				}
+			}
+			int errors = 0;
+			for(StringIntPair pair1 : stringList){
+				for(StringIntPair pair2 : stringList){
+					if(pair1 != pair2 && pair1.getString().equals(pair2.getString()) && pair1.getInteger() == pair2.getInteger()){
+						errors++;
+					}
+				}
+			}
+			if(errors != 0){
+				errors = errors / 2; //Due to symmetric errors checking
+				this.setFitness((double)1 / (double)errors);
+			}else{
+				this.setFitness(1.0);
+			}
 		}
-		if(errors != 0){
-			errors = errors / 2; //Due to symmetric errors checking
-		}
-		this.setFitness((double)1 / (double)(errors + 1));
+
 		
 		
 		

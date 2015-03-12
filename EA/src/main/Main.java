@@ -47,7 +47,7 @@ public class Main
 				result = ea.run(generateIndividuals());
 			}
 			showGraph(giList);
-			System.out.println("Max length: " + Parameters.VECTOR_LENGTH);
+			System.out.println("Max length: " + (Parameters.VECTOR_LENGTH - 1));
 			System.out.println(((SurprisingSequensesIndividual)lastResult).toString());
 		}
 		

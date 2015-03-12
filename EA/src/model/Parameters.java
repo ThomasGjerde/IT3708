@@ -4,7 +4,7 @@ public class Parameters
 {
 	public static int GENERATIONS = 200;
 	
-	public static int VECTOR_LENGTH = 10;
+	public static int VECTOR_LENGTH = 20;
 	public static double MUTATION_RATE = 0.01;
 	public static double CROSSOVER_RATE = 0.7;
 	public static boolean TWO_POINT_CROSSOVER = false;
@@ -17,8 +17,8 @@ public class Parameters
 	public static double TOURNAMENT_SELECTION_PROBABILITY = 0.8;
 	public static int LOLZ_CUTOFF = 4;	
 	public static ProblemType PROBLEM_TYPE = ProblemType.SURPRISING_SEQUENCES;
-	public static int SYMBOL_SIZE = 40;
-	public static SurprisingSequenceType SURPRISING_SEQUENCE_TYPE = SurprisingSequenceType.LOCALLY;
+	public static int SYMBOL_SIZE = 10;
+	public static SurprisingSequenceType SURPRISING_SEQUENCE_TYPE = SurprisingSequenceType.GLOBALLY;
 	
 	public static void setParameter(String input){
 		String[] data = input.split("=");
