@@ -95,6 +95,16 @@ public class Parameters
 				PROBLEM_TYPE = ProblemType.SURPRISING_SEQUENCES;
 				System.out.println("SURPRISING_SEQUENCES Set");
 			}
+		}else if(data[0].toUpperCase().equals("SYMBOL_SIZE")){
+			SYMBOL_SIZE = Integer.parseInt(data[1]);
+		}else if(data[0].toUpperCase().equals("SURPRISING_SEQUENCE_TYPE")){
+			if(data[1].toUpperCase().equals("GLOBALLY")){
+				SURPRISING_SEQUENCE_TYPE = SurprisingSequenceType.GLOBALLY;
+				System.out.println("GLOBALLY Set");
+			}else if(data[1].toUpperCase().equals("LOCALLY")){
+				SURPRISING_SEQUENCE_TYPE = SurprisingSequenceType.LOCALLY;
+				System.out.println("LOCALLY Set");
+			}
 		}
 		
 	}
