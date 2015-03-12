@@ -2,9 +2,9 @@ package model;
 
 public class Parameters
 {
-	public static int GENERATIONS = 200;
+	public static int GENERATIONS = 100;
 	
-	public static int VECTOR_LENGTH = 20;
+	public static int VECTOR_LENGTH = 25;
 	public static double MUTATION_RATE = 0.01;
 	public static double CROSSOVER_RATE = 0.7;
 	public static boolean TWO_POINT_CROSSOVER = false;
@@ -17,7 +17,7 @@ public class Parameters
 	public static double TOURNAMENT_SELECTION_PROBABILITY = 0.8;
 	public static int LOLZ_CUTOFF = 4;	
 	public static ProblemType PROBLEM_TYPE = ProblemType.SURPRISING_SEQUENCES;
-	public static int SYMBOL_SIZE = 10;
+	public static int SYMBOL_SIZE = 20;
 	public static SurprisingSequenceType SURPRISING_SEQUENCE_TYPE = SurprisingSequenceType.GLOBALLY;
 	
 	public static void setParameter(String input){
@@ -26,9 +26,9 @@ public class Parameters
 			System.out.println("Malformed input");
 			System.exit(1);
 		}
-		if(data[0].toUpperCase().equals("ONE_MAX_VECTOR_LENGTH")){
+		if(data[0].toUpperCase().equals("VECTOR_LENGTH")){
 			VECTOR_LENGTH = Integer.parseInt(data[1]);
-			System.out.println("ONE_MAX_VECTOR_LENGTH Set");
+			System.out.println("VECTOR_LENGTH Set");
 		}else if(data[0].toUpperCase().equals("GENERATIONS")){
 			GENERATIONS = Integer.parseInt(data[1]);
 			System.out.println("GENERATIONS Set");
