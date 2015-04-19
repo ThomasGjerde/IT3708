@@ -16,8 +16,14 @@ public class RampNeuron extends Neuron {
 		//Check this out
 		weightedInput /= input.length + Parameters.FL_BIAS != 0 ? 1.0 : 0.0;
 		
-		
-		return 0;
+		if(weightedInput < Parameters.FL_RAMP_LOWER){
+			output = 0.0;
+		}else if(weightedInput < Parameters.FL_RAMP_UPPER){
+			output = weightedInput;
+		}else{
+			output = 1.0;
+		}
+		return output;
 	}
 
 }
