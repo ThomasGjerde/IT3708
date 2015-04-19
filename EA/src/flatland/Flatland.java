@@ -12,8 +12,9 @@ public class Flatland {
 		Board board = new Board();
 		ANN ann = new ANN();
 		for(int i = 0; i < Parameters.FLATLAND_TIMESTEPS; i++){
-			
+			ann.chooseDirection(board);
 		}
+		//Get fitness from board
 		return 0.0;
 	}
 }
