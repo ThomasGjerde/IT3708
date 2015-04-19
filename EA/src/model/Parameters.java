@@ -19,6 +19,8 @@ public class Parameters
 	public static ProblemType PROBLEM_TYPE = ProblemType.ONE_MAX;
 	public static int SYMBOL_SIZE = 20;
 	public static SurprisingSequenceType SURPRISING_SEQUENCE_TYPE = SurprisingSequenceType.GLOBALLY;
+	public static int FL_INPUT_NEURONS = 6;
+	public static int FL_OUTPUT_NEURONS = 3;
 	
 	public static void setParameter(String input){
 		String[] data = input.split("=");
