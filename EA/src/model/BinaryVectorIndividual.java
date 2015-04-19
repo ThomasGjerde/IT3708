@@ -5,7 +5,7 @@ import java.util.Random;
 public abstract class BinaryVectorIndividual extends Individual
 {
 	protected boolean[] genotype = new boolean[Parameters.VECTOR_LENGTH]; //Possibly unnecessary
-	protected int[] phenotype = new int[Parameters.VECTOR_LENGTH];
+	protected double[] phenotype = new double[Parameters.VECTOR_LENGTH];
 	
 	public boolean[] getGenotype()
 	{
@@ -19,7 +19,7 @@ public abstract class BinaryVectorIndividual extends Individual
 	public String toString()
 	{
 		String s = "[";
-		for(int i : phenotype){
+		for(double i : phenotype){
 			s += i;
 			s += ",";
 		}

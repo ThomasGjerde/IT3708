@@ -16,7 +16,7 @@ public class Parameters
 	public static int TOURNAMENT_SIZE = 4;
 	public static double TOURNAMENT_SELECTION_PROBABILITY = 0.8;
 	public static int LOLZ_CUTOFF = 4;	
-	public static ProblemType PROBLEM_TYPE = ProblemType.SURPRISING_SEQUENCES;
+	public static ProblemType PROBLEM_TYPE = ProblemType.ONE_MAX;
 	public static int SYMBOL_SIZE = 20;
 	public static SurprisingSequenceType SURPRISING_SEQUENCE_TYPE = SurprisingSequenceType.GLOBALLY;
 	
