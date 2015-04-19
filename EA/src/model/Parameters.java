@@ -21,6 +21,7 @@ public class Parameters
 	public static SurprisingSequenceType SURPRISING_SEQUENCE_TYPE = SurprisingSequenceType.GLOBALLY;
 	public static int FL_INPUT_NEURONS = 6;
 	public static int FL_OUTPUT_NEURONS = 3;
+	public static double FL_BIAS = 0;
 	
 	public static void setParameter(String input){
 		String[] data = input.split("=");
