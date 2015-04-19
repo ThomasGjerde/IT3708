@@ -8,6 +8,7 @@ float MAX_SPEED_PREDATOR = 2.0;
 float MIN_SEPARATION = 20.0;
 float RANGE = 70;
 float BOID_SIZE = 4;
+float OBSTACLE_SIZE = 24;
 int BUTTON_SIZE = 40;
 int BUTTONS_Y;
 int LABEL_FONT_SIZE = 16;
@@ -52,6 +53,7 @@ public void setup() {
   world = new World();
   for (int i = 0; i < 200; i++) {
     world.addBoid(random(width), random(height));
+    //world.addBoid(width/2,height/2);
   }
     
 }
@@ -97,37 +99,30 @@ public void update(){
 public void mousePressed() {
   if (plusSeparationOver) {
     separationWeight += 0.1;
-  }
-  if(minusSeparationOver){
+  }else if(minusSeparationOver){
      separationWeight -= 0.1; 
-  }
-  if(plusAlignmentOver){
+  }else if(plusAlignmentOver){
    alignmentWeight += 0.1; 
-  }
-  if(minusAlignmentOver){
+  }else if(minusAlignmentOver){
    alignmentWeight -= 0.1; 
-  }
-  if(plusCohesionOver){
+  }else if(plusCohesionOver){
    cohesionWeight += 0.1; 
-  }
-  if(minusCohesionOver){
+  }else if(minusCohesionOver){
    cohesionWeight -= 0.1; 
-  }
-  if(plusPredatorOver){
+  }else if(plusPredatorOver){
    world.addPredator(random(width),random(height)); 
-  }
-  if(minusPredatorOver){
+  }else if(minusPredatorOver){
    if(world.predators.size() > 0){
     world.predators.remove(0);
    } 
-  }
-  if(plusObstacleOver){
+  }else if(plusObstacleOver){
    world.addObstacle(random(width),random(height)); 
-  }
-  if(minusObstacleOver){
+  }else if(minusObstacleOver){
    if(world.obstacles.size() > 0){
     world.obstacles.remove(0); 
    }
+  }else{
+   world.addBoid(mouseX,mouseY);
   }
 }
 
@@ -340,10 +335,10 @@ public class Boid {
   int totalChange = 0;
  for(Obstacle obstacle : world.obstacles){
    if(this.position.dist(obstacle.position) < RANGE){
-    if(PVector.sub(this.position,obstacle.position).x > -5 && PVector.sub(this.position,obstacle.position).x < 5){
-  change.add(10,0,0);
-  }else if(PVector.sub(this.position,obstacle.position).y > -5 && PVector.sub(this.position,obstacle.position).y < 5){
-  change.add(0,10,0);
+    if(PVector.sub(this.position,obstacle.position).x > -(OBSTACLE_SIZE+BOID_SIZE+1) && PVector.sub(this.position,obstacle.position).x < (OBSTACLE_SIZE+BOID_SIZE+1)){
+  change.add(20,0,0);
+  }else if(PVector.sub(this.position,obstacle.position).y > -(OBSTACLE_SIZE+BOID_SIZE+1) && PVector.sub(this.position,obstacle.position).y < (OBSTACLE_SIZE+BOID_SIZE+1)){
+  change.add(0,20,0);
   } 
    }
     
@@ -428,7 +423,7 @@ public void process(){
   drawObstacle();
 }
 private void drawObstacle(){
- rect(position.x,position.y,4,4); 
+ rect(position.x,position.y,OBSTACLE_SIZE,OBSTACLE_SIZE); 
 }
 }
 

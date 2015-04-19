@@ -97,6 +97,7 @@ public class Parameters
 			}
 		}else if(data[0].toUpperCase().equals("SYMBOL_SIZE")){
 			SYMBOL_SIZE = Integer.parseInt(data[1]);
+			System.out.println("SYMBOL_SIZE Set");
 		}else if(data[0].toUpperCase().equals("SURPRISING_SEQUENCE_TYPE")){
 			if(data[1].toUpperCase().equals("GLOBALLY")){
 				SURPRISING_SEQUENCE_TYPE = SurprisingSequenceType.GLOBALLY;
