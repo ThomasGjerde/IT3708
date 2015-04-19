@@ -1,6 +1,9 @@
-package model;
+package ea;
 
 import java.util.Random;
+
+import model.Parameters;
+
 
 public abstract class BinaryVectorIndividual extends Individual
 {

@@ -2,12 +2,13 @@ package main;
 
 import java.util.ArrayList;
 
+import ea.Individual;
+import ea.Population;
+
 import onemax.OneMaxIndividual;
 
 import model.GenerationInfo;
-import model.Individual;
 import model.Parameters;
-import model.Population;
 
 public class EA
 {

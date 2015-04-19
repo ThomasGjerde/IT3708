@@ -2,9 +2,10 @@ package lolz;
 
 import java.util.Random;
 
+import ea.BinaryVectorIndividual;
+import ea.Individual;
+
 import onemax.OneMaxIndividual;
-import model.BinaryVectorIndividual;
-import model.Individual;
 import model.Parameters;
 
 public class LolzIndividual extends BinaryVectorIndividual{

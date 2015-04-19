@@ -1,4 +1,4 @@
-package model;
+package ea;
 
 
 public abstract class Individual

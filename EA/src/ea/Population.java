@@ -1,10 +1,17 @@
-package model;
+package ea;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Random;
+
+import model.AdultSelectionMode;
+import model.GenerationInfo;
+import model.IndividualPair;
+import model.Parameters;
+import model.ParentSelectionMode;
+
 
 
 public class Population

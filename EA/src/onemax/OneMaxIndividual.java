@@ -1,11 +1,12 @@
 package onemax;
 import java.util.Random;
 
+import ea.BinaryVectorIndividual;
+import ea.Individual;
+
 import util.Utilities;
 
 
-import model.BinaryVectorIndividual;
-import model.Individual;
 import model.Parameters;
 
 public class OneMaxIndividual extends BinaryVectorIndividual

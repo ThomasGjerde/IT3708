@@ -5,6 +5,8 @@ import java.util.Random;
 
 import org.jfree.ui.RefineryUtilities;
 
+import ea.Individual;
+
 import onemax.OneMaxIndividual;
 import plot.BarChart_AWT;
 import surprisingsequenses.SurprisingSequensesIndividual;
@@ -12,7 +14,6 @@ import util.Utilities;
 
 import lolz.LolzIndividual;
 import model.GenerationInfo;
-import model.Individual;
 import model.Parameters;
 import model.ProblemType;
 

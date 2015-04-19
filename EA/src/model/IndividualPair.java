@@ -1,5 +1,7 @@
 package model;
 
+import ea.Individual;
+
 public class IndividualPair
 {
 	private Individual a;

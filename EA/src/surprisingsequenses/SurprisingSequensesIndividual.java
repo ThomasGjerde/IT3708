@@ -3,8 +3,9 @@ package surprisingsequenses;
 import java.util.ArrayList;
 import java.util.Random;
 
-import model.BinaryVectorIndividual;
-import model.Individual;
+import ea.BinaryVectorIndividual;
+import ea.Individual;
+
 import model.Parameters;
 import model.StringIntPair;
 import model.SurprisingSequenceType;
