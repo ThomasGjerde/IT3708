@@ -1,5 +1,7 @@
 package model;
 
+import ann.NeuronType;
+
 public class Parameters
 {
 	public static int GENERATIONS = 100;
@@ -28,6 +30,7 @@ public class Parameters
 	public static double FL_SIGMOID_SCALING = 1.0;
 	public static double FL_STEP_THRESHOLD = 0.5;
 	public static boolean FL_STATIC_BOARD = false;
+	public static NeuronType FL_ACTIVE_FUNC = NeuronType.LINEAR;
 	
 	public static void setParameter(String input){
 		String[] data = input.split("=");
