@@ -1,5 +1,5 @@
 package ann;
 
 public abstract class Neuron {
-	public abstract double fire();
+	public abstract double fire(double[] input, double[] weights);
 }
