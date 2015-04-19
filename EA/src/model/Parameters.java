@@ -25,6 +25,7 @@ public class Parameters
 	public static double FL_RAMP_UPPER = 0.8f;
 	public static double FL_RAMP_LOWER = 0.2f;
 	public static int FLATLAND_TIMESTEPS = 60;
+	public static double FL_SIGMOID_SCALING = 1.0f;
 	
 	public static void setParameter(String input){
 		String[] data = input.split("=");
