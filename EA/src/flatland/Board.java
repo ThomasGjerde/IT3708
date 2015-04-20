@@ -109,4 +109,8 @@ public class Board {
 	public Agent getAgent(){
 		return agent;
 	}
+	
+	public CellContent[][] getCells(){
+		return cells;
+	}
 }
