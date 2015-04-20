@@ -108,6 +108,9 @@ public class Parameters
 			}else if(data[1].toUpperCase().equals("SURPRISING_SEQUENCES")){
 				PROBLEM_TYPE = ProblemType.SURPRISING_SEQUENCES;
 				System.out.println("SURPRISING_SEQUENCES Set");
+			}else if(data[1].toUpperCase().equals("FLATLAND")){
+				PROBLEM_TYPE = ProblemType.FLATLAND;
+				System.out.println("FLATLAND Set");
 			}
 		}else if(data[0].toUpperCase().equals("SYMBOL_SIZE")){
 			SYMBOL_SIZE = Integer.parseInt(data[1]);
@@ -120,6 +123,56 @@ public class Parameters
 				SURPRISING_SEQUENCE_TYPE = SurprisingSequenceType.LOCALLY;
 				System.out.println("LOCALLY Set");
 			}
+		}else if(data[0].toUpperCase().equals("FL_INPUT_NEURONS")){
+			FL_INPUT_NEURONS = Integer.parseInt(data[1]);
+			System.out.println("FL_INPUT_NEURONS Set");
+		}else if(data[0].toUpperCase().equals("FL_OUTPUT_NEURONS")){
+			FL_OUTPUT_NEURONS = Integer.parseInt(data[1]);
+			System.out.println("FL_OUTPUT_NEURONS Set");
+		}else if(data[0].toUpperCase().equals("FL_BIAS")){
+			FL_BIAS = Double.parseDouble(data[1]);
+			System.out.println("FL_BIAS Set");
+		}else if(data[0].toUpperCase().equals("FL_RAMP_UPPER")){
+			FL_RAMP_UPPER = Double.parseDouble(data[1]);
+			System.out.println("FL_RAMP_UPPER Set");
+		}else if(data[0].toUpperCase().equals("FL_RAMP_LOWER")){
+			FL_RAMP_LOWER = Double.parseDouble(data[1]);
+			System.out.println("FL_RAMP_LOWER Set");
+		}else if(data[0].toUpperCase().equals("FL_TIMESTEPS")){
+			FL_TIMESTEPS = Integer.parseInt(data[1]);
+			System.out.println("FL_TIMESTEPS Set");
+		}else if(data[0].toUpperCase().equals("FL_SIGMOID_SCALING")){
+			FL_SIGMOID_SCALING = Double.parseDouble(data[1]);
+			System.out.println("FL_SIGMOID_SCALING Set");
+		}else if(data[0].toUpperCase().equals("FL_STEP_THRESHOLD")){
+			FL_STEP_THRESHOLD = Double.parseDouble(data[1]);
+			System.out.println("FL_STEP_THRESHOLD Set");
+		}else if(data[0].toUpperCase().equals("FL_STATIC_BOARD")){
+			FL_STATIC_BOARD = Boolean.parseBoolean(data[1]);
+			System.out.println("FL_STATIC_BOARD Set");
+		}else if(data[0].toUpperCase().equals("FL_ACTIVE_FUNC")){
+			if(data[1].toUpperCase().equals("LINEAR")){
+				FL_ACTIVE_FUNC = NeuronType.LINEAR;
+				System.out.println("LINEAR Set");
+			}else if(data[1].toUpperCase().equals("STEP")){
+				FL_ACTIVE_FUNC = NeuronType.STEP;
+				System.out.println("STEP Set");
+			}else if(data[1].toUpperCase().equals("RAMP")){
+				FL_ACTIVE_FUNC = NeuronType.RAMP;
+				System.out.println("RAMP Set");
+			}else if(data[1].toUpperCase().equals("SIGMOID")){
+				FL_ACTIVE_FUNC = NeuronType.SIGMOID;
+				System.out.println("SIGMOID Set");
+			}else if(data[1].toUpperCase().equals("HYPERBOLIC_TANGENT")){
+				FL_ACTIVE_FUNC = NeuronType.HYPERBOLIC_TANGENT;
+				System.out.println("HYPERBOLIC_TANGENT Set");
+			}
+		}else if(data[0].toUpperCase().equals("FL_MAPSIZE")){
+			FL_MAPSIZE = Integer.parseInt(data[1]);
+			System.out.println("FL_MAPSIZE Set");
+		}else if(data[0].toUpperCase().equals("FL_BITSIZE")){
+			FL_BITSIZE = Integer.parseInt(data[1]);
+			System.out.println("FL_BITSIZE Set");
 		}
 		
 	}
