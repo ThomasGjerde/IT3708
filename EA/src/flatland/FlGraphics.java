@@ -9,9 +9,9 @@ import javax.swing.JPanel;
 import model.CellContent;
 import model.Parameters;
 
-public class flGraphics extends JPanel{
+public class FlGraphics extends JPanel{
 	Board currentBoard;
-	public flGraphics(Board board){
+	public FlGraphics(Board board){
 		
 		JFrame frame = new JFrame();
 		frame.setSize(Parameters.FL_MAPSIZE*10,Parameters.FL_MAPSIZE*10);

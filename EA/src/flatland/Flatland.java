@@ -22,7 +22,7 @@ public class Flatland {
 		Board board = new Board();
 		ANN ann = new ANN(weights);
 		Direction step = Direction.STILL;
-		flGraphics graphics = new flGraphics(board);
+		FlGraphics graphics = new FlGraphics(board);
 		
 		for(int i=0; i<Parameters.FL_TIMESTEPS; i++){
 			step = ann.chooseDirection(board);
