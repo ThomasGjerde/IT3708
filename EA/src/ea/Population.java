@@ -57,7 +57,7 @@ public class Population
 		for(Individual individ : individuals){
 			individ.calcFitness();
 			popFit += individ.getFitness();
-			if(individ.getFitness() > highestFitness){
+			if(individ.getFitness() >= highestFitness){
 				highestFitness = individ.getFitness();
 				mostFitIndividual = individ;
 				//System.out.println("Most fit: " + highestFitness + " Gen: " + currentGen);
