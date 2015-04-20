@@ -26,7 +26,7 @@ public class Flatland {
 		
 		for(int i=0; i<Parameters.FL_TIMESTEPS; i++){
 			step = ann.chooseDirection(board);
-			//board.moveAgent(step);
+			board.moveAgent(step);
 			graphics.setBoard(board);
 			
 		}
