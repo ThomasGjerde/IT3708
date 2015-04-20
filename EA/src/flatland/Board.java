@@ -37,10 +37,41 @@ public class Board {
 	}
 	public void moveAgent(Direction dir){
 		Direction orientation = agent.getOrientation();
-		Direction boardDirection;
+		int posX = agent.getPosX();
+		int posY = agent.getPosY();
+		
 		if(dir == Direction.LEFT){
-			
+			orientation = Direction.rotateDirection(orientation, -1);
+		}else if(dir == Direction.RIGHT){
+			orientation = Direction.rotateDirection(orientation, 1);
+		}else if(dir == Direction.DOWN){
+			orientation = Direction.rotateDirection(orientation, 2);
 		}
+		
+		if(orientation == Direction.LEFT){
+			posX += -1;
+			if(posX < 0){
+				posX = Parameters.FL_MAPSIZE;
+			}
+		}else if(orientation == Direction.RIGHT){
+			posX += 1;
+			if(posX > Parameters.FL_MAPSIZE){
+				posX = 0;
+			}
+		}else if(orientation == Direction.UP){
+			posY += -1;
+			if(posY < 0){
+				posY = Parameters.FL_MAPSIZE;
+			}
+		}else if(orientation == Direction.DOWN){
+			posY += 1;
+			if(posY > Parameters.FL_MAPSIZE){
+				posY = 0;
+			}
+		}
+		
+		agent.setPosition(posX, posY, cells[posX][posY]);
+		
 	}
 	private void generateRandomCells(){
 		//Check for nullpointers

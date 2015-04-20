@@ -21,4 +21,10 @@ public class Agent {
 	public Direction getOrientation(){
 		return this.orientation;
 	}
+	public int getPosX(){
+		return posX;
+	}
+	public int getPosY(){
+		return posY;
+	}
 }
