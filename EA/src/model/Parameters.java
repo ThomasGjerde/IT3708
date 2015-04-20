@@ -7,7 +7,7 @@ public class Parameters
 	public static int GENERATIONS = 10;
 	
 	public static int VECTOR_LENGTH = 25;
-	public static double MUTATION_RATE = 0.5;
+	public static double MUTATION_RATE = 0.1;
 	public static double CROSSOVER_RATE = 0.7;
 	public static boolean TWO_POINT_CROSSOVER = false;
 	public static int POPULATION_SIZE = 50;

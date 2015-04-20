@@ -18,9 +18,9 @@ public class FlatlandIndividual extends BinaryVectorIndividual{
 	}
 	@Override
 	public Individual clone() {
-		boolean[] newGenotype = new boolean[Parameters.VECTOR_LENGTH*Parameters.FL_BITSIZE];
+		boolean[] newGenotype = new boolean[genotype.length];
 		//Not sure if this is necessary, doing it anyway
-		for(int i = 0; i < Parameters.VECTOR_LENGTH*Parameters.FL_BITSIZE; i++){
+		for(int i = 0; i < genotype.length; i++){
 			newGenotype[i] = this.genotype[i];
 		}
 		return new FlatlandIndividual(newGenotype);
