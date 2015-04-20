@@ -13,12 +13,17 @@ import model.Parameters;
 public class EA
 {
 	private ArrayList<GenerationInfo> giList;
+	private Population population;
 	public ArrayList<GenerationInfo> getGiList()
 	{
 		return giList;
 	}
 	public EA(){
 		
+	}
+	public EA(ArrayList<Individual> individuals){
+		this.population = new Population(individuals);
+		giList = new ArrayList<GenerationInfo>();
 	}
 	public Individual run(ArrayList<Individual> individuals){
 		giList = new ArrayList<GenerationInfo>();
@@ -31,5 +36,9 @@ public class EA
 			}
 		}
 		return null;
+	}
+	public Individual runSingleGeneration(){
+		giList.add(population.evolve());
+		return population.getMostFit();
 	}
 }
