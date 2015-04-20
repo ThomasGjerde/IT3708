@@ -14,7 +14,7 @@ public class Flatland {
 		Board board = new Board();
 		ANN ann = new ANN();
 		for(int i = 0; i < Parameters.FL_TIMESTEPS; i++){
-			ann.chooseDirection(board);
+			board.moveAgent(ann.chooseDirection(board));
 		}
 		return board.getAgent().getFitness();
 	}
