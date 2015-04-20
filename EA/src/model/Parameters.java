@@ -31,6 +31,7 @@ public class Parameters
 	public static double FL_STEP_THRESHOLD = 0.5;
 	public static boolean FL_STATIC_BOARD = false;
 	public static NeuronType FL_ACTIVE_FUNC = NeuronType.LINEAR;
+	public static int FL_MAPSIZE = 10;
 	
 	public static void setParameter(String input){
 		String[] data = input.split("=");
