@@ -53,21 +53,21 @@ public class Board {
 		if(orientation == Direction.LEFT){
 			posX += -1;
 			if(posX < 0){
-				posX = Parameters.FL_MAPSIZE;
+				posX = Parameters.FL_MAPSIZE -1;
 			}
 		}else if(orientation == Direction.RIGHT){
 			posX += 1;
-			if(posX > Parameters.FL_MAPSIZE){
+			if(posX > Parameters.FL_MAPSIZE -1){
 				posX = 0;
 			}
 		}else if(orientation == Direction.UP){
 			posY += -1;
 			if(posY < 0){
-				posY = Parameters.FL_MAPSIZE;
+				posY = Parameters.FL_MAPSIZE -1;
 			}
 		}else if(orientation == Direction.DOWN){
 			posY += 1;
-			if(posY > Parameters.FL_MAPSIZE){
+			if(posY > Parameters.FL_MAPSIZE -1){
 				posY = 0;
 			}
 		}

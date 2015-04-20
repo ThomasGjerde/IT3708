@@ -23,11 +23,12 @@ public class ANN {
 		outputs = new double[Parameters.FL_OUTPUT_NEURONS];
 		
 		//Her kan det kanskje spares litt kraft
-		//Er ikke helt sikker på hvor man ikke bare setter = her
+		//Er ikke helt sikker pï¿½ hvor man ikke bare setter = her
 		weights = new double[Parameters.FL_INPUT_NEURONS*Parameters.FL_OUTPUT_NEURONS];
 		for(int i=0; i<weights.length; i++){
 			weights[i] = newWeights[i];
 		}
+		//util.Utilities.printDoubleArray(weights);
 	}
 	
 	public Direction chooseDirection(Board board){

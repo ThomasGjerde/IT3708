@@ -60,6 +60,7 @@ public class Main
 				Flatland fl = new Flatland(bestInd.getPhenotype());
 				fl.graphicRun(); //maybe fix multiple window problem
 			}
+			showGraph(flEa.getGiList());
 		}
 		
 		

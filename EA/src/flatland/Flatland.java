@@ -16,6 +16,7 @@ public class Flatland {
 		for(int i = 0; i < Parameters.FL_TIMESTEPS; i++){
 			board.moveAgent(ann.chooseDirection(board));
 		}
+		board.getAgent().calcFitness();
 		return board.getAgent().getFitness();
 	}
 	public void graphicRun(){

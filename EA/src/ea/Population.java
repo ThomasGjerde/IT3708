@@ -19,7 +19,7 @@ public class Population
 	ArrayList<Individual> individuals = new ArrayList<Individual>();
 	ArrayList<Individual> nextGeneration = new ArrayList<Individual>();
 	double populationFitness = 0;
-	double highestFitness = 0;
+	double highestFitness = -100000.0;
 	double sd = 0;
 	int currentGen = 0;
 	Individual mostFitIndividual;

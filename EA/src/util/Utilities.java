@@ -14,4 +14,16 @@ public class Utilities
 		s += "]";
 		System.out.println(s);
 	}
+	public static void printDoubleArray(double[] array){
+		String s = "[";
+		for(double i : array){
+			s += i;
+			s += ",";
+		}
+		if(s.length() > 0){
+			s = s.substring(0,s.length() -1);
+		}
+		s += "]";
+		System.out.println(s);
+	}
 }

@@ -27,6 +27,10 @@ public class Agent {
 	public Direction getOrientation(){
 		return this.orientation;
 	}
+	public void calcFitness(){
+		fitness += foodEaten;
+		fitness -= poisonEaten*2;
+	}
 	public int getPosX(){
 		return posX;
 	}

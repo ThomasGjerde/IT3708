@@ -30,6 +30,7 @@ public class FlatlandIndividual extends BinaryVectorIndividual{
 	public void calcFitness() {
 		Flatland flatland = new Flatland(this.phenotype);
 		this.setFitness(flatland.run());
+		//System.out.println("Fitness: " + this.getFitness());
 	}
 	
 	@Override
@@ -48,6 +49,7 @@ public class FlatlandIndividual extends BinaryVectorIndividual{
 		for(int i = 0; i < newGenotype.length; i++){
 			newGenotype[i] = r.nextBoolean();
 		}
+		//util.Utilities.printBoolArray(newGenotype);
 		return new FlatlandIndividual(newGenotype);
 	}
 }

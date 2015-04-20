@@ -4,16 +4,16 @@ import ann.NeuronType;
 
 public class Parameters
 {
-	public static int GENERATIONS = 100;
+	public static int GENERATIONS = 10;
 	
 	public static int VECTOR_LENGTH = 25;
-	public static double MUTATION_RATE = 0.01;
+	public static double MUTATION_RATE = 0.5;
 	public static double CROSSOVER_RATE = 0.7;
 	public static boolean TWO_POINT_CROSSOVER = false;
 	public static int POPULATION_SIZE = 50;
 	public static int PARENT_PAIRS = 75;
 	public static AdultSelectionMode ADULT_SELECTION_MODE = AdultSelectionMode.OVER_PRODUCTION;
-	public static double TARGET_FITNESS = 1;
+	public static double TARGET_FITNESS = 1.1;
 	public static ParentSelectionMode PARENT_SELECTION_MODE = ParentSelectionMode.TOURNAMENT_SELECTION;
 	public static int TOURNAMENT_SIZE = 4;
 	public static double TOURNAMENT_SELECTION_PROBABILITY = 0.8;
@@ -29,7 +29,7 @@ public class Parameters
 	public static int FL_TIMESTEPS = 60;
 	public static double FL_SIGMOID_SCALING = 1.0;
 	public static double FL_STEP_THRESHOLD = 0.5;
-	public static boolean FL_STATIC_BOARD = false;
+	public static boolean FL_STATIC_BOARD = true;
 	public static NeuronType FL_ACTIVE_FUNC = NeuronType.LINEAR;
 	public static int FL_MAPSIZE = 10;
 	public static int FL_BITSIZE = 8;

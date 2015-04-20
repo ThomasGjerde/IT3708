@@ -11,10 +11,11 @@ import model.Parameters;
 
 public class FlGraphics extends JPanel{
 	Board currentBoard;
+	int scale = 40;	
 	public FlGraphics(Board board){
-		
+	
 		JFrame frame = new JFrame();
-		frame.setSize(Parameters.FL_MAPSIZE*10,Parameters.FL_MAPSIZE*10);
+		frame.setSize(Parameters.FL_MAPSIZE*scale+20,Parameters.FL_MAPSIZE*scale+40);
 		frame.setTitle("Agent");
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,19 +30,19 @@ public class FlGraphics extends JPanel{
 			for(int j=0; j<Parameters.FL_MAPSIZE; j++){
 				//g.fillRect(x, y, width, height);
 				g.setColor(Color.gray);
-				g.fillRect(i*10, j*10, 10, 10);
+				g.fillRect(i*scale, j*scale, scale, scale);
 				if(currentBoard.getCells()[i][j] == CellContent.AGENT){
 					g.setColor(Color.blue);
 					//g.fillOval(x, y, width, height);
-					g.fillOval(i*10, j*10, 5, 5);
+					g.fillOval(i*scale, j*scale, scale, scale);
 				}
 				if(currentBoard.getCells()[i][j] == CellContent.FOOD){
 					g.setColor(Color.red);
-					g.fillOval(i*10, j*10, 5, 5);
+					g.fillOval(i*scale, j*scale, scale/2, scale/2);
 				}
 				if(currentBoard.getCells()[i][j] == CellContent.POISON){
 					g.setColor(Color.green);
-					g.fillOval(i*10, j*10, 5, 5);
+					g.fillOval(i*scale, j*scale, scale/2, scale/2);
 				}
 			}
 		}
@@ -49,6 +50,12 @@ public class FlGraphics extends JPanel{
 	
 	public void setBoard(Board board){
 		currentBoard = board;
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		//drawBoard();
 		this.repaint();
 	}
