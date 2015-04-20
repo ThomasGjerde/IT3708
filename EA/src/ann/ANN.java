@@ -3,6 +3,7 @@ package ann;
 import java.util.Arrays;
 
 import flatland.Board;
+import model.CellContent;
 import model.Direction;
 import model.Parameters;
 
@@ -30,13 +31,20 @@ public class ANN {
 	}
 	
 	public Direction chooseDirection(Board board){
+		CellContent[] sensors = board.getSensorInfo();
+		if(sensors[0] == CellContent.FOOD){inputs[0] = 1.0;}else{inputs[0] = 0.0;}
+		if(sensors[1] == CellContent.FOOD){inputs[1] = 1.0;}else{inputs[1] = 0.0;}
+		if(sensors[2] == CellContent.FOOD){inputs[2] = 1.0;}else{inputs[2] = 0.0;}
+		if(sensors[0] == CellContent.POISON){inputs[3] = 1.0;}else{inputs[3] = 0.0;}
+		if(sensors[1] == CellContent.POISON){inputs[4] = 1.0;}else{inputs[4] = 0.0;}
+		if(sensors[2] == CellContent.POISON){inputs[5] = 1.0;}else{inputs[5] = 0.0;}
 		//board.getAgent().evaluateNextMove(board);
-		//inputs[0] = board.agent.foodLeft() ? 1.0 : 0.0;
-		//inputs[1] = board.agent.foodAhead() ? 1.0 : 0.0;
-		//inputs[2] = board.agent.foodRight() ? 1.0 : 0.0;
-		//inputs[3] = board.agent.poisonLeft() ? 1.0 : 0.0;
-		//inputs[4] = board.agent.poisonAhead() ? 1.0 : 0.0;
-		//inputs[5] = board.agent.poisonRight() ? 1.0 : 0.0;
+		//inputs[0] = board.getAgent().foodLeft() ? 1.0 : 0.0;
+		//inputs[1] = board.getAgent().foodAhead() ? 1.0 : 0.0;
+		//inputs[2] = board.getAgent().foodRight() ? 1.0 : 0.0;
+		//inputs[3] = board.getAgent().poisonLeft() ? 1.0 : 0.0;
+		//inputs[4] = board.getAgent().poisonAhead() ? 1.0 : 0.0;
+		//inputs[5] = board.getAgent().poisonRight() ? 1.0 : 0.0;
 		Direction bestDirection;
 		
 		int temp = Parameters.FL_INPUT_NEURONS;

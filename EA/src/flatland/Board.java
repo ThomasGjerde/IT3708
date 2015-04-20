@@ -118,4 +118,70 @@ public class Board {
 	public CellContent[][] getCells(){
 		return cells;
 	}
+	
+	public CellContent[] getSensorInfo(){
+		int x = agent.getPosX();
+		int y = agent.getPosY();
+		Direction ori = agent.getOrientation();
+		int midX = 0;
+		int midY = 0;
+		CellContent sensor[] = new CellContent[3];
+		if(ori == Direction.UP){
+			//Front
+			if(y == 0){midY = Parameters.FL_MAPSIZE-1;}else{midY = y-1;}
+			midX = x;
+			sensor[1] = cells[midX][midY];
+			
+			//Right
+			if(x == Parameters.FL_MAPSIZE-1){midX = 0;}else{midX = x+1;}
+			midY = y;
+			sensor[2] = cells[midX][midY];
+			
+			//Left
+			if(x == 0){midX = Parameters.FL_MAPSIZE-1;}else{midX = x-1;}
+			midY = y;
+			sensor[0] = cells[midX][midY];
+			
+		}else if(ori == Direction.RIGHT){
+			//Front
+			if(x == Parameters.FL_MAPSIZE-1){midX = 0;}else{midX = x+1;}
+			midY = y;
+			sensor[1] = cells[midX][midY];
+			//Right
+			if(y == Parameters.FL_MAPSIZE-1){midY = 0;}else{midY = y+1;}
+			midX = x;
+			sensor[2] = cells[midX][midY];
+			//Left
+			if(y == 0){midY = Parameters.FL_MAPSIZE-1;}else{midY = y-1;}
+			midX = x;
+			sensor[0] = cells[midX][midY];
+		}else if(ori == Direction.DOWN){
+			//Front
+			if(y == Parameters.FL_MAPSIZE-1){midY = 0;}else{midY = y+1;}
+			midX = x;
+			sensor[1] = cells[midX][midY];
+			//Right
+			if(x == 0){midX = Parameters.FL_MAPSIZE-1;}else{midX = x-1;}
+			midY = y;
+			sensor[2] = cells[midX][midY];
+			//Left
+			if(x == Parameters.FL_MAPSIZE-1){midX = 0;}else{midX = x+1;}
+			midY = y;
+			sensor[0] = cells[midX][midY];
+		}else{//ori == Direction.LEFT
+			//Front
+			if(x == 0){midX = Parameters.FL_MAPSIZE-1;}else{midX = x-1;}
+			midY = y;
+			sensor[1] = cells[midX][midY];
+			//Right
+			if(y == 0){midY = Parameters.FL_MAPSIZE-1;}else{midY = y-1;}
+			midX = x;
+			sensor[2] = cells[midX][midY];
+			//Left
+			if(y == Parameters.FL_MAPSIZE){midY = 0;}else{midY = y+1;}
+			midX = x;
+			sensor[0] = cells[midX][midY];
+		}
+		return sensor;
+	}
 }
