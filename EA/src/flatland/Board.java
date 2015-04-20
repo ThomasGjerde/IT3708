@@ -39,11 +39,7 @@ public class Board {
 		Direction orientation = agent.getOrientation();
 		Direction boardDirection;
 		if(dir == Direction.LEFT){
-			if(orientation == Direction.UP){
-				boardDirection = Direction.LEFT;
-			}else if(orientation == Direction.LEFT){
-				boardDirection = Direction.DOWN;
-			}else if()
+			
 		}
 	}
 	private void generateRandomCells(){
