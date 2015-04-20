@@ -12,6 +12,7 @@ public class Board {
 	Agent agent;
 	CellContent cells[][];
 	public Board(){	
+		cells = new CellContent[Parameters.FL_MAPSIZE][Parameters.FL_MAPSIZE];
 		if(Parameters.FL_STATIC_BOARD){
 			if(staticBoard == null){
 				generateRandomCells();
@@ -35,7 +36,15 @@ public class Board {
 		agent = new Agent(agentX,agentY,Direction.UP);
 	}
 	public void moveAgent(Direction dir){
-		//TODO
+		Direction orientation = agent.getOrientation();
+		Direction boardDirection;
+		if(dir == Direction.LEFT){
+			if(orientation == Direction.UP){
+				boardDirection = Direction.LEFT;
+			}else if(orientation == Direction.LEFT){
+				boardDirection = Direction.DOWN;
+			}else if()
+		}
 	}
 	private void generateRandomCells(){
 		//Check for nullpointers
