@@ -12,7 +12,7 @@ import model.Parameters;
 public class FlGraphics extends JPanel{
 	Board currentBoard;
 	int scale = 40;	
-	public FlGraphics(Board board){
+	public FlGraphics(){
 	
 		JFrame frame = new JFrame();
 		frame.setSize(Parameters.FL_MAPSIZE*scale+20,Parameters.FL_MAPSIZE*scale+40);
@@ -20,7 +20,7 @@ public class FlGraphics extends JPanel{
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(this);
-		currentBoard = board;
+		//currentBoard = board;
 		
 	}
 	

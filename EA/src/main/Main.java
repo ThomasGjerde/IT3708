@@ -7,6 +7,7 @@ import org.jfree.ui.RefineryUtilities;
 
 import ea.FlatlandIndividual;
 import ea.Individual;
+import flatland.FlGraphics;
 import flatland.Flatland;
 
 import onemax.OneMaxIndividual;
@@ -18,6 +19,7 @@ import lolz.LolzIndividual;
 import model.GenerationInfo;
 import model.Parameters;
 import model.ProblemType;
+import model.StaticGraphic;
 
 public class Main
 {
@@ -54,6 +56,7 @@ public class Main
 			System.out.println("Max length: " + (Parameters.VECTOR_LENGTH - 1));
 			System.out.println(((SurprisingSequensesIndividual)lastResult).toString());
 		}else if(Parameters.PROBLEM_TYPE == ProblemType.FLATLAND){
+			StaticGraphic.flGraphics = new FlGraphics();
 			EA flEa = new EA(individuals);
 			for(int i = 0; i < Parameters.GENERATIONS; i++){
 				FlatlandIndividual bestInd = (FlatlandIndividual) flEa.runSingleGeneration();

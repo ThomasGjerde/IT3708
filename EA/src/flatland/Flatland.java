@@ -2,6 +2,7 @@ package flatland;
 
 import model.Direction;
 import model.Parameters;
+import model.StaticGraphic;
 import ann.ANN;
 
 public class Flatland {
@@ -26,12 +27,13 @@ public class Flatland {
 		Board board = new Board();
 		ANN ann = new ANN(weights);
 		Direction step = Direction.STILL;
-		FlGraphics graphics = new FlGraphics(board);
+		//FlGraphics graphics = new FlGraphics(board);
+		StaticGraphic.flGraphics.setBoard(board);
 		
 		for(int i=0; i<Parameters.FL_TIMESTEPS; i++){
 			step = ann.chooseDirection(board);
 			board.moveAgent(step);
-			graphics.setBoard(board);
+			StaticGraphic.flGraphics.setBoard(board);
 			
 		}
 	}
