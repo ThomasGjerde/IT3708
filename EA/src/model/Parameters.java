@@ -33,6 +33,7 @@ public class Parameters
 	public static NeuronType FL_ACTIVE_FUNC = NeuronType.LINEAR;
 	public static int FL_MAPSIZE = 10;
 	public static int FL_BITSIZE = 8;
+	public static int ANN_RUNS = 10;
 	
 	public static void setParameter(String input){
 		String[] data = input.split("=");

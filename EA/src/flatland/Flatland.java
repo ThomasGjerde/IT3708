@@ -15,13 +15,20 @@ public class Flatland {
 		}
 	}
 	public double run(){
-		Board board = new Board();
-		ANN ann = new ANN(weights);
-		for(int i = 0; i < Parameters.FL_TIMESTEPS; i++){
-			board.moveAgent(ann.chooseDirection(board));
+		double sum = 0;
+		int runs = 0;
+		for(int i = 0; i < Parameters.ANN_RUNS; i++){
+			Board board = new Board();
+			ANN ann = new ANN(weights);
+			for(int j = 0; j < Parameters.FL_TIMESTEPS; j++){
+				board.moveAgent(ann.chooseDirection(board));
+			}
+			board.getAgent().calcFitness();
+			sum += board.getAgent().getFitness();
+			runs++;
 		}
-		board.getAgent().calcFitness();
-		return board.getAgent().getFitness();
+		return sum / runs;
+		//return board.getAgent().getFitness();
 	}
 	public void graphicRun(){
 		Board board = new Board();
