@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import model.CellContent;
+import model.Direction;
 import model.Parameters;
 
 public class Board {
 	static CellContent[][] staticBoard;
 	Agent agent;
 	CellContent cells[][];
-	public Board(){
-		Agent agent = new Agent();	
+	public Board(){	
 		if(Parameters.FL_STATIC_BOARD){
 			if(staticBoard == null){
 				generateRandomCells();
@@ -22,6 +22,20 @@ public class Board {
 		}else{
 			generateRandomCells();
 		}
+		int agentX = 0;
+		int agentY = 0;
+		for(int i = 0; i < cells.length; i++){
+			for(int j = 0; j < cells[0].length; j++){
+				if(cells[i][j] == CellContent.AGENT){
+					agentX = i;
+					agentY = j;
+				}
+			}
+		}
+		agent = new Agent(agentX,agentY,Direction.UP);
+	}
+	public void moveAgent(Direction dir){
+		//TODO
 	}
 	private void generateRandomCells(){
 		//Check for nullpointers
@@ -37,9 +51,10 @@ public class Board {
 		for(int i = 0; i < numPoison; i++){
 			cellList.add(CellContent.POISON);
 		}
-		for(int i = 0; i < numEmpty; i++){
+		for(int i = 0; i < numEmpty - 1; i++){
 			cellList.add(CellContent.EMPTY);
 		}
+		cellList.add(CellContent.AGENT);
 		for(int i = 0; i < cells.length; i++){
 			for(int j = 0; j < cells[0].length; j++){
 				cells[i][j] = cellList.remove(r.nextInt(cellList.size()));
