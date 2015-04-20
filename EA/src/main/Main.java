@@ -52,6 +52,11 @@ public class Main
 			showGraph(giList);
 			System.out.println("Max length: " + (Parameters.VECTOR_LENGTH - 1));
 			System.out.println(((SurprisingSequensesIndividual)lastResult).toString());
+		}else if(Parameters.PROBLEM_TYPE == ProblemType.FLATLAND){
+			EA flEa = new EA(individuals);
+			for(int i = 0; i < Parameters.GENERATIONS; i++){
+				FlatlandIndividual bestInd = (FlatlandIndividual) flEa.runSingleGeneration();
+			}
 		}
 		
 		
