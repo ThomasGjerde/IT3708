@@ -39,6 +39,8 @@ public class Board {
 		Direction orientation = agent.getOrientation();
 		int posX = agent.getPosX();
 		int posY = agent.getPosY();
+		int oldX = posX;
+		int oldY = posY;
 		
 		if(dir == Direction.LEFT){
 			orientation = Direction.rotateDirection(orientation, -1);
@@ -71,7 +73,10 @@ public class Board {
 		}
 		
 		agent.setPosition(posX, posY, cells[posX][posY]);
-		
+		cells[posX][posY] = CellContent.AGENT;
+		if(oldX != posX || oldY != posY){
+			cells[oldX][oldY] = CellContent.EMPTY;
+		}
 	}
 	private void generateRandomCells(){
 		//Check for nullpointers
