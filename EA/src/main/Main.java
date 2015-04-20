@@ -5,6 +5,7 @@ import java.util.Random;
 
 import org.jfree.ui.RefineryUtilities;
 
+import ea.FlatlandIndividual;
 import ea.Individual;
 
 import onemax.OneMaxIndividual;
@@ -71,6 +72,8 @@ public class Main
 				individuals.add(LolzIndividual.generateRandomIndividual());
 			}else if(Parameters.PROBLEM_TYPE == ProblemType.SURPRISING_SEQUENCES){
 				individuals.add(SurprisingSequensesIndividual.generateRandomIndividual());
+			}else if(Parameters.PROBLEM_TYPE == ProblemType.FLATLAND){
+				individuals.add(FlatlandIndividual.generateRandomIndividual());
 			}
 		}
 		return individuals;

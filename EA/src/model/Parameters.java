@@ -18,7 +18,7 @@ public class Parameters
 	public static int TOURNAMENT_SIZE = 4;
 	public static double TOURNAMENT_SELECTION_PROBABILITY = 0.8;
 	public static int LOLZ_CUTOFF = 4;	
-	public static ProblemType PROBLEM_TYPE = ProblemType.ONE_MAX;
+	public static ProblemType PROBLEM_TYPE = ProblemType.FLATLAND;
 	public static int SYMBOL_SIZE = 20;
 	public static SurprisingSequenceType SURPRISING_SEQUENCE_TYPE = SurprisingSequenceType.GLOBALLY;
 	public static int FL_INPUT_NEURONS = 6;
@@ -32,6 +32,7 @@ public class Parameters
 	public static boolean FL_STATIC_BOARD = false;
 	public static NeuronType FL_ACTIVE_FUNC = NeuronType.LINEAR;
 	public static int FL_MAPSIZE = 10;
+	public static int FL_BITSIZE = 8;
 	
 	public static void setParameter(String input){
 		String[] data = input.split("=");

@@ -1,5 +1,8 @@
 package ea;
 
+import java.util.Random;
+
+import surprisingsequenses.SurprisingSequensesIndividual;
 import flatland.Flatland;
 import model.Parameters;
 
@@ -15,9 +18,9 @@ public class FlatlandIndividual extends BinaryVectorIndividual{
 	}
 	@Override
 	public Individual clone() {
-		boolean[] newGenotype = new boolean[Parameters.VECTOR_LENGTH];
+		boolean[] newGenotype = new boolean[Parameters.VECTOR_LENGTH*Parameters.FL_BITSIZE];
 		//Not sure if this is necessary, doing it anyway
-		for(int i = 0; i < Parameters.VECTOR_LENGTH; i++){
+		for(int i = 0; i < Parameters.VECTOR_LENGTH*Parameters.FL_BITSIZE; i++){
 			newGenotype[i] = this.genotype[i];
 		}
 		return new FlatlandIndividual(newGenotype);
@@ -27,5 +30,24 @@ public class FlatlandIndividual extends BinaryVectorIndividual{
 	public void calcFitness() {
 		Flatland flatland = new Flatland(this.phenotype);
 		this.setFitness(flatland.run());
+	}
+	
+	@Override
+	public void develop() {
+		this.phenotype = new double[Parameters.VECTOR_LENGTH];
+		for(int i = 0; i < this.genotype.length; i++){
+			if(this.genotype[i] == true){
+				this.phenotype[i/8] += 1.0/Parameters.FL_BITSIZE;
+			}
+		}
+	}
+
+	public static FlatlandIndividual generateRandomIndividual(){
+		boolean[] newGenotype = new boolean[Parameters.VECTOR_LENGTH*Parameters.FL_BITSIZE];
+		Random r = new Random();
+		for(int i = 0; i < newGenotype.length; i++){
+			newGenotype[i] = r.nextBoolean();
+		}
+		return new FlatlandIndividual(newGenotype);
 	}
 }
