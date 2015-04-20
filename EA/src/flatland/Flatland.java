@@ -18,7 +18,7 @@ public class Flatland {
 		}
 		return board.getAgent().getFitness();
 	}
-	public void graphicRun(double[] weights){
+	public void graphicRun(){
 		Board board = new Board();
 		ANN ann = new ANN(weights);
 		Direction step = Direction.STILL;

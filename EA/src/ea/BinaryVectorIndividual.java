@@ -18,6 +18,9 @@ public abstract class BinaryVectorIndividual extends Individual
 	{
 		this.genotype = genotype;
 	}
+	public double[] getPhenotype(){
+		return this.phenotype;
+	}
 	@Override
 	public String toString()
 	{

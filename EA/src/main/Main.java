@@ -7,6 +7,7 @@ import org.jfree.ui.RefineryUtilities;
 
 import ea.FlatlandIndividual;
 import ea.Individual;
+import flatland.Flatland;
 
 import onemax.OneMaxIndividual;
 import plot.BarChart_AWT;
@@ -56,6 +57,8 @@ public class Main
 			EA flEa = new EA(individuals);
 			for(int i = 0; i < Parameters.GENERATIONS; i++){
 				FlatlandIndividual bestInd = (FlatlandIndividual) flEa.runSingleGeneration();
+				Flatland fl = new Flatland(bestInd.getPhenotype());
+				fl.graphicRun(); //maybe fix multiple window problem
 			}
 		}
 		
