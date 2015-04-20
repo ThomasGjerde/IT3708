@@ -9,7 +9,7 @@ public class Agent {
 	private Direction orientation;
 	private int foodEaten = 0;
 	private int poisonEaten = 0;
-	private double fitness;
+	private double fitness = 0.0;
 	public Agent(int posX, int posY, Direction dir){
 		this.posX = posX;
 		this.posY = posY;
@@ -26,5 +26,8 @@ public class Agent {
 	}
 	public int getPosY(){
 		return posY;
+	}
+	public double getFitness(){
+		return fitness;
 	}
 }
