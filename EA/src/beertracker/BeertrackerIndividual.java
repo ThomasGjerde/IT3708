@@ -50,8 +50,8 @@ public class BeertrackerIndividual extends BinaryVectorIndividual{
 
 	@Override
 	public void calcFitness() {
-		// TODO Auto-generated method stub
-		
+		BeerTracker bt = new BeerTracker(this.phenotype);
+		this.setFitness(bt.run());
 	}
 
 }

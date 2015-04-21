@@ -21,6 +21,9 @@ public class BeerBoard {
 		}
 		generateBlock();
 	}
+	public BeerAgent getAgent(){
+		return this.agent;
+	}
 	private void generateBlock(){
 		currentBlock = new ArrayList<Point>();
 		Random rand = new Random();

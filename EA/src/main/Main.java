@@ -6,6 +6,7 @@ import java.util.Random;
 import org.jfree.ui.RefineryUtilities;
 
 import beertracker.BeerGraphics;
+import beertracker.BeerTracker;
 import beertracker.BeertrackerIndividual;
 
 import ea.FlatlandIndividual;
@@ -72,8 +73,8 @@ public class Main
 			EA beerEA = new EA(individuals);
 			for(int i = 0; i < Parameters.GENERATIONS; i++){
 				BeertrackerIndividual bestInd = (BeertrackerIndividual)beerEA.runSingleGeneration();
-				
-				
+				BeerTracker bt = new BeerTracker(bestInd.getPhenotype());
+				bt.graphicRun();
 			}
 		}
 		
