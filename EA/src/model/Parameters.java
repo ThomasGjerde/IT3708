@@ -29,11 +29,13 @@ public class Parameters
 	public static int FL_TIMESTEPS = 60;
 	public static double FL_SIGMOID_SCALING = 1.0;
 	public static double FL_STEP_THRESHOLD = 0.5;
-	public static boolean FL_STATIC_BOARD = false;
+	public static boolean FL_STATIC_BOARD = true;
 	public static NeuronType FL_ACTIVE_FUNC = NeuronType.LINEAR;
 	public static int FL_MAPSIZE = 10;
 	public static int FL_BITSIZE = 8;
 	public static int ANN_RUNS = 10;
+	public static int BT_INPUT_NEURONS = 5;
+	public static int BT_OUTPUT_NEURONS = 8;
 	
 	public static void setParameter(String input){
 		String[] data = input.split("=");
