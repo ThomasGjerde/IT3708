@@ -28,7 +28,6 @@ public class BeerGraphics extends JPanel{
 		super.paintComponent(g);
 		for(int i=0; i<Parameters.BT_SIZE_X; i++){
 			for(int j=0; j<Parameters.BT_SIZE_Y; j++){
-				//g.fillRect(x, y, width, height);
 				g.setColor(Color.gray);
 				g.fillRect(i*scale, j*scale, scale, scale);
 				if(currentBoard.getCells()[i][j] == BeerCellContent.SENSOR){
@@ -39,12 +38,6 @@ public class BeerGraphics extends JPanel{
 					g.setColor(Color.red);
 					g.fillOval(i*scale, j*scale, scale/2, scale/2);
 				}
-				/*
-				if(currentBoard.getCells()[i][j] == CellContent.POISON){
-					g.setColor(Color.green);
-					g.fillOval(i*scale, j*scale, scale/2, scale/2);
-				}
-				*/
 			}
 		}
 	}
@@ -60,15 +53,5 @@ public class BeerGraphics extends JPanel{
 		//drawBoard();
 		this.repaint();
 	}
-	/*
-	public void drawBoard(){
-		currentBoard.getCells();
-		for(int i=0; i<Parameters.FL_MAPSIZE; i++){
-			for(int j=0; j<Parameters.FL_MAPSIZE; j++){
-				
-				//this.repaint();
-			}
-		}
-	}*/
 	
 }
