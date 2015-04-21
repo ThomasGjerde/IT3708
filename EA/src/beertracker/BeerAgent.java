@@ -1,5 +1,8 @@
 package beertracker;
 
+import java.awt.Point;
+import java.util.ArrayList;
+
 public class BeerAgent {
 	private int[] positions;
 	private double fitness;
@@ -11,5 +14,8 @@ public class BeerAgent {
 	}
 	public void setPositions(int[] pos){
 		this.positions = pos;
+	}
+	public void checkCollision(ArrayList<Point> block){
+		
 	}
 }
