@@ -36,6 +36,8 @@ public class Parameters
 	public static int ANN_RUNS = 10;
 	public static int BT_INPUT_NEURONS = 5;
 	public static int BT_OUTPUT_NEURONS = 8;
+	public static int BT_SIZE_X = 30;
+	public static int BT_SIZE_Y = 15;
 	
 	public static void setParameter(String input){
 		String[] data = input.split("=");

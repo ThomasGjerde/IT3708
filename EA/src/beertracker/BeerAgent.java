@@ -9,4 +9,7 @@ public class BeerAgent {
 	public int[] getPositions(){
 		return positions;
 	}
+	public void setPositions(int[] pos){
+		this.positions = pos;
+	}
 }
