@@ -24,7 +24,9 @@ public class BeerBoard {
 			cells[startPosX + i][startPosY] = BeerCellContent.BLOCK;
 		}
 	}
-	
+	public BeerCellContent[][] getCells(){
+		return cells;
+	}
 	public double[] getSensorInfo(){
 		int[] positions = agent.getPositions();
 		double[] sensors = new double[positions.length]; 
