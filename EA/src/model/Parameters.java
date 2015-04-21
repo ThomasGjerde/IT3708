@@ -6,7 +6,7 @@ public class Parameters
 {
 	public static int GENERATIONS = 100;
 	
-	public static int VECTOR_LENGTH = 18;
+	public static int VECTOR_LENGTH = 47;
 	public static double MUTATION_RATE = 0.1;
 	public static double CROSSOVER_RATE = 0.7;
 	public static boolean TWO_POINT_CROSSOVER = false;
@@ -18,7 +18,7 @@ public class Parameters
 	public static int TOURNAMENT_SIZE = 4;
 	public static double TOURNAMENT_SELECTION_PROBABILITY = 0.8;
 	public static int LOLZ_CUTOFF = 4;	
-	public static ProblemType PROBLEM_TYPE = ProblemType.FLATLAND;
+	public static ProblemType PROBLEM_TYPE = ProblemType.BEERTRACKER;
 	public static int SYMBOL_SIZE = 20;
 	public static SurprisingSequenceType SURPRISING_SEQUENCE_TYPE = SurprisingSequenceType.GLOBALLY;
 	public static int FL_INPUT_NEURONS = 6;

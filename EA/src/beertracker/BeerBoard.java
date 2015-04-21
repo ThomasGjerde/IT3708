@@ -29,7 +29,7 @@ public class BeerBoard {
 		Random rand = new Random();
 		int size = rand.nextInt(5) + 1;
 		int startPosX = rand.nextInt(Parameters.BT_SIZE_X - size);
-		int startPosY = rand.nextInt(Parameters.BT_SIZE_Y - 1) + 1;
+		int startPosY = rand.nextInt(Parameters.BT_SIZE_Y - 2) + 1;
 		for(int i = 0; i < size; i++){
 			int posX = startPosX + i;
 			int posY = startPosY;
