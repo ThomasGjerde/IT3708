@@ -50,21 +50,21 @@ public class BeerBoard {
 		}
 		return sensors;
 	}
-	public void moveAgent(Direction dir){
+	public void moveAgent(Direction dir, int magnitude){
 		int[] sensorPos = agent.getPositions();
 		
 		for(int i = 0; i < sensorPos.length; i++){
 			int pos = sensorPos[i];
 			int oldPos = pos;
 			if(dir == Direction.LEFT){
-				pos += -1;
+				pos += -magnitude;
 			}else if(dir == Direction.RIGHT){
-				pos += 1;
+				pos += magnitude;
 			}
 			if(pos < 0){
-				pos = Parameters.BT_SIZE_X -1;
+				pos += (Parameters.BT_SIZE_X) ;
 			}else if(pos > (Parameters.BT_SIZE_X -1)){
-				pos = 0;
+				pos += -(Parameters.BT_SIZE_X);
 			}
 			cells[oldPos][Parameters.BT_SIZE_Y -1] = BeerCellContent.EMPTY;
 			cells[pos][Parameters.BT_SIZE_Y -1] = BeerCellContent.SENSOR;

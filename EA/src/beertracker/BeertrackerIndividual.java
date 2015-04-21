@@ -4,7 +4,6 @@ import java.util.Random;
 
 import model.Parameters;
 import ea.BinaryVectorIndividual;
-import ea.FlatlandIndividual;
 import ea.Individual;
 
 public class BeertrackerIndividual extends BinaryVectorIndividual{

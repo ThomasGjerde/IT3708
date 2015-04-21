@@ -5,6 +5,9 @@ import java.util.Random;
 
 import org.jfree.ui.RefineryUtilities;
 
+import beertracker.BeerGraphics;
+import beertracker.BeertrackerIndividual;
+
 import ea.FlatlandIndividual;
 import ea.Individual;
 import flatland.FlGraphics;
@@ -61,9 +64,17 @@ public class Main
 			for(int i = 0; i < Parameters.GENERATIONS; i++){
 				FlatlandIndividual bestInd = (FlatlandIndividual) flEa.runSingleGeneration();
 				Flatland fl = new Flatland(bestInd.getPhenotype());
-				fl.graphicRun(); //maybe fix multiple window problem
+				fl.graphicRun();
 			}
 			showGraph(flEa.getGiList());
+		}else if(Parameters.PROBLEM_TYPE == ProblemType.BEERTRACKER){
+			StaticGraphic.beerGraphics = new BeerGraphics();
+			EA beerEA = new EA(individuals);
+			for(int i = 0; i < Parameters.GENERATIONS; i++){
+				BeertrackerIndividual bestInd = (BeertrackerIndividual)beerEA.runSingleGeneration();
+				
+				
+			}
 		}
 		
 		
@@ -86,6 +97,8 @@ public class Main
 				individuals.add(SurprisingSequensesIndividual.generateRandomIndividual());
 			}else if(Parameters.PROBLEM_TYPE == ProblemType.FLATLAND){
 				individuals.add(FlatlandIndividual.generateRandomIndividual());
+			}else if(Parameters.PROBLEM_TYPE == ProblemType.BEERTRACKER){
+				individuals.add(BeertrackerIndividual.generateRandomIndividual());
 			}
 		}
 		return individuals;
