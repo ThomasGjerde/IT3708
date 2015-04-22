@@ -4,11 +4,11 @@ import ann.NeuronType;
 
 public class Parameters
 {
-	public static int GENERATIONS = 100;
+	public static int GENERATIONS = 10;
 	//49
 	public static int VECTOR_LENGTH = 70;
 	public static double MUTATION_RATE = 0.1;//0.1
-	public static double CROSSOVER_RATE = 0.7;//0.7
+	public static double CROSSOVER_RATE = 0.4;//0.7
 	public static boolean TWO_POINT_CROSSOVER = false;
 	public static int POPULATION_SIZE = 50;
 	public static int PARENT_PAIRS = 75;
