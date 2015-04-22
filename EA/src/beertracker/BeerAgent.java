@@ -29,7 +29,7 @@ public class BeerAgent {
 			for(Point pos : block){
 				for(int agentPos : positions){
 					if(pos.x == agentPos){
-						avoided--;
+						avoided = avoided - 2;
 						return;
 					}
 				}
@@ -46,7 +46,8 @@ public class BeerAgent {
 				}
 			}//HER ER ER DNRING
 			if(hits == block.size()){
-				caught++;
+				//caught++;
+				caught = caught + 2;
 			}else{
 				caught--;
 			}
