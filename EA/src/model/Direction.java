@@ -5,7 +5,8 @@ public enum Direction {
 	DOWN(2),
 	LEFT(3),
 	RIGHT(1),
-	STILL(-1);
+	STILL(-1),
+	BEERPOOL(-2);
 	
 	private final int value;
 	Direction(int value){
