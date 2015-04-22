@@ -5,10 +5,10 @@ import ann.NeuronType;
 public class Parameters
 {
 	public static int GENERATIONS = 100;
-	
-	public static int VECTOR_LENGTH = 47;
-	public static double MUTATION_RATE = 0.1;
-	public static double CROSSOVER_RATE = 0.7;
+	//49
+	public static int VECTOR_LENGTH = 70;
+	public static double MUTATION_RATE = 0.1;//0.1
+	public static double CROSSOVER_RATE = 0.7;//0.7
 	public static boolean TWO_POINT_CROSSOVER = false;
 	public static int POPULATION_SIZE = 50;
 	public static int PARENT_PAIRS = 75;
@@ -35,7 +35,7 @@ public class Parameters
 	public static int FL_BITSIZE = 8;
 	public static int ANN_RUNS = 10;
 	public static int BT_INPUT_NEURONS = 5;
-	public static int BT_OUTPUT_NEURONS = 9;
+	public static int BT_OUTPUT_NEURONS = 10;
 	public static int BT_SIZE_X = 30;
 	public static int BT_SIZE_Y = 15;
 	public static int DELAY = 50;

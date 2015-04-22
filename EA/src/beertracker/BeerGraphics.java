@@ -26,7 +26,7 @@ public class BeerGraphics extends JPanel{
 		frame.add(this);
 		//currentBoard = board;
 		
-		final JSlider delaySlider = new JSlider(JSlider.HORIZONTAL, 0,100,50);
+		final JSlider delaySlider = new JSlider(JSlider.HORIZONTAL, 0,200,50);
 		delaySlider.setPaintTicks(true);
 		delaySlider.setMajorTickSpacing(5);
 		delaySlider.setMinorTickSpacing(1);
