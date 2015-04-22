@@ -2,6 +2,8 @@ package flatland;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -10,6 +12,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import model.CellContent;
+import model.Direction;
 import model.Parameters;
 
 public class FlGraphics extends JPanel{
@@ -61,8 +64,19 @@ public class FlGraphics extends JPanel{
 				g.fillRect(i*scale, j*scale, scale, scale);
 				if(currentBoard.getCells()[i][j] == CellContent.AGENT){
 					g.setColor(Color.blue);
+
 					//g.fillOval(x, y, width, height);
 					g.fillOval(i*scale, j*scale, scale, scale);
+					g.setColor(Color.black);
+					if(currentBoard.getAgent().getOrientation() == Direction.UP){
+						drawArrowLine(g, i*scale +20, j*scale +20, i*scale+20, j*scale+10, 10, 10);
+					}else if(currentBoard.getAgent().getOrientation() == Direction.DOWN){
+						drawArrowLine(g, i*scale +20, j*scale +10, i*scale+20, j*scale+20, 10, 10);
+					}else if(currentBoard.getAgent().getOrientation() == Direction.LEFT){
+						drawArrowLine(g, i*scale +20, j*scale +20, i*scale+10, j*scale+20, 10, 10);
+					}else if(currentBoard.getAgent().getOrientation() == Direction.RIGHT){
+						drawArrowLine(g, i*scale +10, j*scale +20, i*scale+20, j*scale+20, 10, 10);
+					}
 				}
 				if(currentBoard.getCells()[i][j] == CellContent.FOOD){
 					g.setColor(Color.red);
@@ -75,7 +89,36 @@ public class FlGraphics extends JPanel{
 			}
 		}
 	}
-	
+	/**
+     * Draw an arrow line betwwen two point 
+     * @param g the graphic component
+     * @param x1 x-position of first point
+     * @param y1 y-position of first point
+     * @param x2 x-position of second point
+     * @param y2 y-position of second point
+     * @param d  the width of the arrow
+     * @param h  the height of the arrow
+     */
+    private void drawArrowLine(Graphics g, int x1, int y1, int x2, int y2, int d, int h){
+       int dx = x2 - x1, dy = y2 - y1;
+       double D = Math.sqrt(dx*dx + dy*dy);
+       double xm = D - d, xn = xm, ym = h, yn = -h, x;
+       double sin = dy/D, cos = dx/D;
+
+       x = xm*cos - ym*sin + x1;
+       ym = xm*sin + ym*cos + y1;
+       xm = x;
+
+       x = xn*cos - yn*sin + x1;
+       yn = xn*sin + yn*cos + y1;
+       xn = x;
+
+       int[] xpoints = {x2, (int) xm, (int) xn};
+       int[] ypoints = {y2, (int) ym, (int) yn};
+
+       g.drawLine(x1, y1, x2, y2);
+       g.fillPolygon(xpoints, ypoints, 3);
+    }
 	public void setBoard(Board board){
 		currentBoard = board;
 		try {
