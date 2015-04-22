@@ -13,9 +13,11 @@ public class SigmoidNeuron extends Neuron{
 			weightedInput += input[i] * weights[i];
 		}
 		weightedInput += Parameters.FL_BIAS;
+		//weightedInput += bias;
 		//Check this out
 		weightedInput /= input.length + Parameters.FL_BIAS != 0 ? 1.0 : 0.0;
-		output = 1.0 / (1.0 + Math.exp(- Parameters.FL_SIGMOID_SCALING * weightedInput));
+		//weightedInput /= input.length + bias != 0 ? 1.0 : 0.0;
+		output = 1.0 / (1.0 + Math.exp((-Parameters.FL_SIGMOID_SCALING * weightedInput)));
 		return output;
 	}
 
