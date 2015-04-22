@@ -63,7 +63,7 @@ public class BeerGraphics extends JPanel{
 				}
 				if(currentBoard.getCells()[i][j] == BeerCellContent.BLOCK){
 					g.setColor(Color.red);
-					g.fillOval(i*scale, j*scale, scale/2, scale/2);
+					g.fillOval(i*scale, j*scale, scale, scale);
 				}
 			}
 		}
