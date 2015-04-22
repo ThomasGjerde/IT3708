@@ -54,6 +54,15 @@ public class BeerBoard {
 		return sensors;
 	}
 	public void moveAgent(Direction dir, int magnitude){
+		//Pulldown
+		if(dir == Direction.BEERPOOL){
+			agent.checkCollision(currentBlock);
+			for(Point pos : currentBlock){
+				cells[pos.x][pos.y] = BeerCellContent.EMPTY;
+			}
+			generateBlock();
+			return;
+		}
 		int[] sensorPos = agent.getPositions();
 		int[] oldPos = new int[sensorPos.length];
 		for(int i = 0; i < sensorPos.length; i++){
