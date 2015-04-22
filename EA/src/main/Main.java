@@ -76,6 +76,7 @@ public class Main
 				BeerTracker bt = new BeerTracker(bestInd.getPhenotype());
 				bt.graphicRun();
 			}
+			showGraph(beerEA.getGiList());
 		}
 		
 		
