@@ -26,7 +26,7 @@ public class FlGraphics extends JPanel{
 		frame.add(this);
 		//currentBoard = board;
 		
-		JSlider delaySlider = new JSlider(JSlider.HORIZONTAL, 0,100,50);
+		final JSlider delaySlider = new JSlider(JSlider.HORIZONTAL, 0,100,50);
 		delaySlider.setPaintTicks(true);
 		delaySlider.setMajorTickSpacing(5);
 		delaySlider.setMinorTickSpacing(1);
