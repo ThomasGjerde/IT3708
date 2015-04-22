@@ -26,7 +26,7 @@ public class Parameters
 	public static double FL_BIAS = 0;
 	public static double FL_RAMP_UPPER = 0.8;
 	public static double FL_RAMP_LOWER = 0.2;
-	public static int FL_TIMESTEPS = 60;
+	public static int FL_TIMESTEPS = 600;
 	public static double FL_SIGMOID_SCALING = 1.0;
 	public static double FL_STEP_THRESHOLD = 0.5;
 	public static boolean FL_STATIC_BOARD = true;
@@ -35,7 +35,7 @@ public class Parameters
 	public static int FL_BITSIZE = 8;
 	public static int ANN_RUNS = 10;
 	public static int BT_INPUT_NEURONS = 5;
-	public static int BT_OUTPUT_NEURONS = 8;
+	public static int BT_OUTPUT_NEURONS = 9;
 	public static int BT_SIZE_X = 30;
 	public static int BT_SIZE_Y = 15;
 	

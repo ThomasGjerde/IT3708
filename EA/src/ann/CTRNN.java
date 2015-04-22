@@ -52,22 +52,25 @@ public class CTRNN {
 		}
 		
 		ArrayList<BeerArray> midArray = new ArrayList<BeerArray>();
-		midArray.add(new BeerArray(outputs[0],new BeerVector(Direction.LEFT,1), 0));
+		midArray.add(new BeerArray(outputs[0],new BeerVector(Direction.RIGHT,4), 0));
 		midArray.add(new BeerArray(outputs[1],new BeerVector(Direction.LEFT,2), 1));
 		midArray.add(new BeerArray(outputs[2],new BeerVector(Direction.LEFT,3), 2));
 		midArray.add(new BeerArray(outputs[3],new BeerVector(Direction.LEFT,4), 3));
 		midArray.add(new BeerArray(outputs[4],new BeerVector(Direction.RIGHT,1), 4));
 		midArray.add(new BeerArray(outputs[5],new BeerVector(Direction.RIGHT,2), 5));
 		midArray.add(new BeerArray(outputs[6],new BeerVector(Direction.RIGHT,3), 6));
-		midArray.add(new BeerArray(outputs[7],new BeerVector(Direction.RIGHT,4), 7));
+		midArray.add(new BeerArray(outputs[7],new BeerVector(Direction.LEFT,1), 7));
+		midArray.add(new BeerArray(outputs[8],new BeerVector(Direction.STILL,0), 8));
 		
 		Collections.sort(midArray, new Comparator<BeerArray>(){
 			@Override
 			public int compare(BeerArray o1, BeerArray o2) {
 				// TODO Auto-generated method stub
 				//DET HER KAN VÆRE FEIL VEI!
-				double mid = o1.getWeight()-o2.getWeight();
-				return (int)mid;
+				double mid = o2.getWeight()-o1.getWeight();
+				if(o1.getWeight() > o2.getWeight()){return -1;}
+				else{return 1;}
+				//return mid;
 			}
 		});
 		return midArray.get(0).getVector();

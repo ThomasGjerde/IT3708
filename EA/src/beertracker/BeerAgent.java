@@ -18,6 +18,7 @@ public class BeerAgent {
 		this.positions = pos;
 	}
 	public void calcFitness(){
+		//this.fitness = caught + avoided;
 		this.fitness = caught + avoided;
 	}
 	public double getFitness(){

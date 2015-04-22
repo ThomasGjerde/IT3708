@@ -45,7 +45,7 @@ public class BeerGraphics extends JPanel{
 	public void setBoard(BeerBoard board){
 		currentBoard = board;
 		try {
-			Thread.sleep(10);
+			Thread.sleep(50);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
