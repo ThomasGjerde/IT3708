@@ -47,7 +47,7 @@ public class FlGraphics extends JPanel{
 			public void stateChanged(ChangeEvent e) {
 				// TODO Auto-generated method stub
 				Parameters.DELAY = delaySlider.getValue();
-				System.out.println("Parameters.Delay " + Parameters.DELAY);
+				//System.out.println("Parameters.Delay " + Parameters.DELAY);
 				
 			}
 		};

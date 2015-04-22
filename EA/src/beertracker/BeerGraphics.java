@@ -19,7 +19,7 @@ public class BeerGraphics extends JPanel{
 	public BeerGraphics(){
 	
 		JFrame frame = new JFrame();
-		frame.setSize(Parameters.BT_SIZE_X*scale,Parameters.BT_SIZE_Y*scale+100);
+		frame.setSize(Parameters.BT_SIZE_X*scale,Parameters.BT_SIZE_Y*scale+30);
 		frame.setTitle("Agent");
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,7 +44,7 @@ public class BeerGraphics extends JPanel{
 			public void stateChanged(ChangeEvent e) {
 				// TODO Auto-generated method stub
 				Parameters.DELAY = delaySlider.getValue();
-				System.out.println("Parameters.Delay " + Parameters.DELAY);
+				//System.out.println("Parameters.Delay " + Parameters.DELAY);
 				
 			}
 		};
