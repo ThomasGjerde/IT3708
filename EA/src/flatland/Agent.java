@@ -15,7 +15,7 @@ public class Agent {
 		this.posY = posY;
 		this.orientation = dir;
 	}
-	public void setPosition(int posX,int posY, CellContent content){
+	public void setPosition(int posX,int posY, CellContent content, Direction orientation){
 		this.posX = posX;
 		this.posY = posY;
 		if(content == CellContent.FOOD){
@@ -23,6 +23,7 @@ public class Agent {
 		}else if(content == CellContent.POISON){
 			poisonEaten++;
 		}
+		this.orientation = orientation;
 	}
 	public Direction getOrientation(){
 		return this.orientation;

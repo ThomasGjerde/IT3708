@@ -72,7 +72,7 @@ public class Board {
 			}
 		}
 		
-		agent.setPosition(posX, posY, cells[posX][posY]);
+		agent.setPosition(posX, posY, cells[posX][posY], orientation);
 		cells[posX][posY] = CellContent.AGENT;
 		if(oldX != posX || oldY != posY){
 			cells[oldX][oldY] = CellContent.EMPTY;
@@ -178,7 +178,7 @@ public class Board {
 			midX = x;
 			sensor[2] = cells[midX][midY];
 			//Left
-			if(y == Parameters.FL_MAPSIZE){midY = 0;}else{midY = y+1;}
+			if(y == Parameters.FL_MAPSIZE -1){midY = 0;}else{midY = y+1;}
 			midX = x;
 			sensor[0] = cells[midX][midY];
 		}
