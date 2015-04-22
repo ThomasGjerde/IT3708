@@ -38,6 +38,7 @@ public class Parameters
 	public static int BT_OUTPUT_NEURONS = 9;
 	public static int BT_SIZE_X = 30;
 	public static int BT_SIZE_Y = 15;
+	public static int DELAY = 50;
 	
 	public static void setParameter(String input){
 		String[] data = input.split("=");

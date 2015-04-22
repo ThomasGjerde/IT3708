@@ -5,13 +5,17 @@ import java.awt.Graphics;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JSlider;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import model.CellContent;
 import model.Parameters;
 
 public class FlGraphics extends JPanel{
 	Board currentBoard;
-	int scale = 40;	
+	int scale = 40;
+	ChangeListener delaySliderListener;
 	public FlGraphics(){
 	
 		JFrame frame = new JFrame();
@@ -21,6 +25,30 @@ public class FlGraphics extends JPanel{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(this);
 		//currentBoard = board;
+		
+		JSlider delaySlider = new JSlider(JSlider.HORIZONTAL, 0,100,50);
+		delaySlider.setPaintTicks(true);
+		delaySlider.setMajorTickSpacing(5);
+		delaySlider.setMinorTickSpacing(1);
+		
+		JFrame frame2  = new JFrame();
+		frame2.setSize(200,200);
+		frame2.setTitle("Slider window");
+		frame2.setVisible(true);
+		frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame2.add(delaySlider);
+		
+		delaySliderListener = new ChangeListener(){
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				// TODO Auto-generated method stub
+				Parameters.DELAY = delaySlider.getValue();
+				System.out.println("Parameters.Delay " + Parameters.DELAY);
+				
+			}
+		};
+		
+		delaySlider.addChangeListener(delaySliderListener);
 		
 	}
 	
@@ -51,7 +79,7 @@ public class FlGraphics extends JPanel{
 	public void setBoard(Board board){
 		currentBoard = board;
 		try {
-			Thread.sleep(5);
+			Thread.sleep(Parameters.DELAY);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
