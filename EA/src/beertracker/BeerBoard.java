@@ -27,7 +27,7 @@ public class BeerBoard {
 	private void generateBlock(){
 		currentBlock = new ArrayList<Point>();
 		Random rand = new Random();
-		int size = rand.nextInt(5) + 1;
+		int size = rand.nextInt(6) + 1;
 		int startPosX = rand.nextInt(Parameters.BT_SIZE_X - size);
 		int startPosY = rand.nextInt(Parameters.BT_SIZE_Y - 2) + 1;
 		for(int i = 0; i < size; i++){
@@ -55,10 +55,10 @@ public class BeerBoard {
 	}
 	public void moveAgent(Direction dir, int magnitude){
 		int[] sensorPos = agent.getPositions();
-		
+		int[] oldPos = new int[sensorPos.length];
 		for(int i = 0; i < sensorPos.length; i++){
 			int pos = sensorPos[i];
-			int oldPos = pos;
+			oldPos[i] = pos;
 			if(dir == Direction.LEFT){
 				pos += -magnitude;
 			}else if(dir == Direction.RIGHT){
@@ -69,11 +69,17 @@ public class BeerBoard {
 			}else if(pos > (Parameters.BT_SIZE_X -1)){
 				pos += -(Parameters.BT_SIZE_X);
 			}
-			cells[oldPos][Parameters.BT_SIZE_Y -1] = BeerCellContent.EMPTY;
-			cells[pos][Parameters.BT_SIZE_Y -1] = BeerCellContent.SENSOR;
+			//cells[oldPos][Parameters.BT_SIZE_Y -1] = BeerCellContent.EMPTY;
+			//cells[pos][Parameters.BT_SIZE_Y -1] = BeerCellContent.SENSOR;
 			sensorPos[i] = pos;
 		}
 		agent.setPositions(sensorPos);
+		for(int pos : oldPos){
+			cells[pos][Parameters.BT_SIZE_Y -1] = BeerCellContent.EMPTY;
+		}
+		for(int pos : sensorPos){
+			cells[pos][Parameters.BT_SIZE_Y -1] = BeerCellContent.SENSOR;
+		}
 		moveBlock();
 	}
 	private void moveBlock(){
