@@ -28,11 +28,12 @@ public class BeerGraphics extends JPanel{
 		
 		final JSlider delaySlider = new JSlider(JSlider.HORIZONTAL, 0,200,50);
 		delaySlider.setPaintTicks(true);
-		delaySlider.setMajorTickSpacing(5);
-		delaySlider.setMinorTickSpacing(1);
+		delaySlider.setMajorTickSpacing(25);
+		delaySlider.setMinorTickSpacing(5);
+		delaySlider.setPaintLabels(true);
 		
 		JFrame frame2  = new JFrame();
-		frame2.setSize(200,200);
+		frame2.setSize(300,75);
 		frame2.setTitle("Slider window");
 		frame2.setVisible(true);
 		frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
