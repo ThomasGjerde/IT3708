@@ -3,6 +3,8 @@ package beertracker;
 import java.awt.Point;
 import java.util.ArrayList;
 
+import model.Parameters;
+
 public class BeerAgent {
 	private int[] positions;
 	private double fitness;
@@ -49,7 +51,9 @@ public class BeerAgent {
 				//caught++;
 				caught = caught + 2;
 			}else{
-				caught--;
+				if(!Parameters.CHEAT_PLANET){
+					caught--;
+				}
 			}
 		}
 	}

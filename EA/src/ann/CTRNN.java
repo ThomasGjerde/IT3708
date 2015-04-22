@@ -64,13 +64,15 @@ public class CTRNN {
 		midArray.add(new BeerArray(outputs[6],new BeerVector(Direction.RIGHT,3), 6));
 		midArray.add(new BeerArray(outputs[7],new BeerVector(Direction.LEFT,1), 7));
 		midArray.add(new BeerArray(outputs[8],new BeerVector(Direction.STILL,0), 8));
-		midArray.add(new BeerArray(outputs[9],new BeerVector(Direction.BEERPOOL,0), 9));
+		if(Parameters.PULLDOWN_ACTIVE){
+			midArray.add(new BeerArray(outputs[9],new BeerVector(Direction.BEERPOOL,0), 9));
+		}
 		
 		Collections.sort(midArray, new Comparator<BeerArray>(){
 			@Override
 			public int compare(BeerArray o1, BeerArray o2) {
 				// TODO Auto-generated method stub
-				//DET HER KAN VÆRE FEIL VEI!
+				//DET HER KAN Vï¿½RE FEIL VEI!
 				//double mid = o2.getWeight()-o1.getWeight();
 				if(o1.getWeight() > o2.getWeight()){return -1;}
 				else{return 1;}

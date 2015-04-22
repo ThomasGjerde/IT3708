@@ -8,21 +8,15 @@ import model.Direction;
 import model.Parameters;
 
 public class Board {
-	static CellContent[][] staticBoard;
+	static ArrayList<CellContent[][]> staticBoards;
 	Agent agent;
 	CellContent cells[][];
 	public Board(){	
 		cells = new CellContent[Parameters.FL_MAPSIZE][Parameters.FL_MAPSIZE];
-		if(Parameters.FL_STATIC_BOARD){
-			if(staticBoard == null){
-				generateRandomCells();
-				staticBoard = copyCells(cells);
-			}else{
-				cells = copyCells(staticBoard);
-			}
-		}else{
-			generateRandomCells();
-		}
+		generateRandomCells();
+		initBoard();
+	}
+	private void initBoard(){
 		int agentX = 0;
 		int agentY = 0;
 		for(int i = 0; i < cells.length; i++){
@@ -34,6 +28,18 @@ public class Board {
 			}
 		}
 		agent = new Agent(agentX,agentY,Direction.UP);
+	}
+	public Board(int staticMapIndex){
+		cells = new CellContent[Parameters.FL_MAPSIZE][Parameters.FL_MAPSIZE];
+		if(staticBoards == null){
+			staticBoards = new ArrayList<CellContent[][]>();
+			for(int i = 0; i < Parameters.NUM_STATIC_MAPS; i++){
+				generateRandomCells();
+				staticBoards.add(copyCells(cells));
+			}
+		}
+		cells = copyCells(staticBoards.get(staticMapIndex));
+		initBoard();
 	}
 	public void moveAgent(Direction dir){
 		Direction orientation = agent.getOrientation();

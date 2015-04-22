@@ -6,7 +6,7 @@ public class Parameters
 {
 	public static int GENERATIONS = 100;
 	//49
-	public static int VECTOR_LENGTH = 70;
+	public static int VECTOR_LENGTH = 70; //18
 	public static double MUTATION_RATE = 0.1;//0.1
 	public static double CROSSOVER_RATE = 0.7;//0.7
 	public static boolean TWO_POINT_CROSSOVER = false;
@@ -40,6 +40,9 @@ public class Parameters
 	public static int BT_SIZE_Y = 15;
 	public static int DELAY = 50;
 	public static boolean EA_ELITISM = false;
+	public static int NUM_STATIC_MAPS = 5;
+	public static boolean CHEAT_PLANET = false;
+	public static boolean PULLDOWN_ACTIVE = false;
 	
 	public static void setParameter(String input){
 		String[] data = input.split("=");

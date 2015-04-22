@@ -60,6 +60,7 @@ public class Main
 			System.out.println("Max length: " + (Parameters.VECTOR_LENGTH - 1));
 			System.out.println(((SurprisingSequensesIndividual)lastResult).toString());
 		}else if(Parameters.PROBLEM_TYPE == ProblemType.FLATLAND){
+			
 			StaticGraphic.flGraphics = new FlGraphics();
 			EA flEa = new EA(individuals);
 			for(int i = 0; i < Parameters.GENERATIONS; i++){
@@ -70,6 +71,14 @@ public class Main
 			showGraph(flEa.getGiList());
 		}else if(Parameters.PROBLEM_TYPE == ProblemType.BEERTRACKER){
 			StaticGraphic.beerGraphics = new BeerGraphics();
+			
+			/*
+			double[] weights = new double[] { 0.75,0.25,0.25,0.25,0.625,0.5,0.5,0.875,0.625,0.75,0.375,0.625,0.625,0.5,0.75,0.75,0.5,0.375};
+			Flatland fl = new Flatland(weights);
+			fl.graphicRun();
+			return;
+			*/
+			
 			EA beerEA = new EA(individuals);
 			for(int i = 0; i < Parameters.GENERATIONS; i++){
 				BeertrackerIndividual bestInd = (BeertrackerIndividual)beerEA.runSingleGeneration();
@@ -98,8 +107,16 @@ public class Main
 			}else if(Parameters.PROBLEM_TYPE == ProblemType.SURPRISING_SEQUENCES){
 				individuals.add(SurprisingSequensesIndividual.generateRandomIndividual());
 			}else if(Parameters.PROBLEM_TYPE == ProblemType.FLATLAND){
+				Parameters.VECTOR_LENGTH = 18; //Auto
 				individuals.add(FlatlandIndividual.generateRandomIndividual());
 			}else if(Parameters.PROBLEM_TYPE == ProblemType.BEERTRACKER){
+				if(Parameters.PULLDOWN_ACTIVE){
+					Parameters.VECTOR_LENGTH = 70;
+					Parameters.BT_OUTPUT_NEURONS = 10;
+				}else{
+					Parameters.VECTOR_LENGTH = 63;
+					Parameters.BT_OUTPUT_NEURONS = 9;
+				}
 				individuals.add(BeertrackerIndividual.generateRandomIndividual());
 			}
 		}

@@ -33,7 +33,7 @@ public class BeertrackerIndividual extends BinaryVectorIndividual{
 		this.phenotype = new double[Parameters.VECTOR_LENGTH];
 		for(int i = 0; i < this.genotype.length; i++){
 			if(this.genotype[i] == true){
-				this.phenotype[i/8] += 1.0/Parameters.FL_BITSIZE;
+				this.phenotype[i/Parameters.FL_BITSIZE] += 1.0/Parameters.FL_BITSIZE;
 			}
 		}
 	}
