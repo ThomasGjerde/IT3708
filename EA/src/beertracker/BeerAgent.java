@@ -19,7 +19,7 @@ public class BeerAgent {
 	}
 	public void calcFitness(){
 		//this.fitness = caught + avoided;
-		this.fitness = caught + avoided;
+		this.fitness = caught + avoided*1.5;
 	}
 	public double getFitness(){
 		return this.fitness;
@@ -29,11 +29,13 @@ public class BeerAgent {
 			for(Point pos : block){
 				for(int agentPos : positions){
 					if(pos.x == agentPos){
+						avoided--;
 						return;
 					}
 				}
 			}
-			avoided++;
+			//avoided = avoided + 2;
+			//avoided++;
 		}else{
 			int hits = 0;
 			for(Point pos : block){
@@ -42,9 +44,11 @@ public class BeerAgent {
 						hits++;
 					}
 				}
-			}
+			}//HER ER ER DNRING
 			if(hits == block.size()){
 				caught++;
+			}else{
+				caught--;
 			}
 		}
 	}
