@@ -12,6 +12,7 @@ public class BeerBoard {
 	BeerCellContent cells[][];
 	BeerAgent agent;
 	ArrayList<Point> currentBlock;
+	private boolean pulledDown = false;
 	public BeerBoard(){
 		cells = new BeerCellContent[Parameters.BT_SIZE_X][Parameters.BT_SIZE_Y];
 		int[] sensorPos = new int[] {7,8,9,10,11};
@@ -55,7 +56,9 @@ public class BeerBoard {
 	}
 	public void moveAgent(Direction dir, int magnitude){
 		//Pulldown
+		this.pulledDown = false;
 		if(dir == Direction.BEERPOOL){
+			this.pulledDown = true;
 			agent.checkCollision(currentBlock);
 			for(Point pos : currentBlock){
 				cells[pos.x][pos.y] = BeerCellContent.EMPTY;
@@ -107,5 +110,8 @@ public class BeerBoard {
 		}else{
 			currentBlock = newBlock;
 		}
+	}
+	public boolean getPulledDown(){
+		return this.pulledDown;
 	}
 }

@@ -58,7 +58,11 @@ public class BeerGraphics extends JPanel{
 				g.setColor(Color.gray);
 				g.fillRect(i*scale, j*scale, scale, scale);
 				if(currentBoard.getCells()[i][j] == BeerCellContent.SENSOR){
-					g.setColor(Color.blue);
+					if(currentBoard.getPulledDown()){
+						g.setColor(Color.green);
+					}else{
+						g.setColor(Color.blue);
+					}
 					g.fillOval(i*scale, j*scale, scale, scale);
 				}
 				if(currentBoard.getCells()[i][j] == BeerCellContent.BLOCK){
