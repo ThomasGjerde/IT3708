@@ -93,6 +93,12 @@ public class Population
 	}
 
 	private void selectAdults(){
+		if(Parameters.EA_ELITISM){
+			if(mostFitIndividual != null){
+				individuals.remove(mostFitIndividual);
+				nextGeneration.add(mostFitIndividual);
+			}
+		}
 		if(Parameters.ADULT_SELECTION_MODE == AdultSelectionMode.FULL){
 			selectFull();
 		}else if(Parameters.ADULT_SELECTION_MODE == AdultSelectionMode.OVER_PRODUCTION){
