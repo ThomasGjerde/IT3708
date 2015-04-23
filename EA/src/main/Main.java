@@ -60,8 +60,15 @@ public class Main
 			System.out.println("Max length: " + (Parameters.VECTOR_LENGTH - 1));
 			System.out.println(((SurprisingSequensesIndividual)lastResult).toString());
 		}else if(Parameters.PROBLEM_TYPE == ProblemType.FLATLAND){
-			
 			StaticGraphic.flGraphics = new FlGraphics();
+			if(Parameters.SINGLE_RUN){
+				double[] weights = new double[] { 0.75,0.25,0.5,0.25,0.75,0.625,0.625,0.75,0.375,0.75,0.375,0.625,0.375,0.625,0.875,0.875,0.625,0.25};
+				//FlatlandIndividual bestInd = (FlatlandIndividual) flEa.runSingleGeneration();
+				Flatland fl = new Flatland(weights);
+				fl.graphicRun();
+				return;
+			}
+			
 			EA flEa = new EA(individuals);
 			for(int i = 0; i < Parameters.GENERATIONS; i++){
 				FlatlandIndividual bestInd = (FlatlandIndividual) flEa.runSingleGeneration();
@@ -72,20 +79,24 @@ public class Main
 		}else if(Parameters.PROBLEM_TYPE == ProblemType.BEERTRACKER){
 			StaticGraphic.beerGraphics = new BeerGraphics();
 			
-			/*
-			double[] weights = new double[] { 0.75,0.25,0.25,0.25,0.625,0.5,0.5,0.875,0.625,0.75,0.375,0.625,0.625,0.5,0.75,0.75,0.5,0.375};
-			Flatland fl = new Flatland(weights);
-			fl.graphicRun();
-			return;
-			*/
-			
-			EA beerEA = new EA(individuals);
-			for(int i = 0; i < Parameters.GENERATIONS; i++){
-				BeertrackerIndividual bestInd = (BeertrackerIndividual)beerEA.runSingleGeneration();
-				BeerTracker bt = new BeerTracker(bestInd.getPhenotype());
-				bt.graphicRun();
+			if(Parameters.SINGLE_RUN){
+				double[] weights = new double[] { 0.75,0.5,0.5,0.25,0.75,0.625,0.25,0.625,0.375,0.75,0.375,0.75,0.5,0.5,0.75,0.5,0.875,0.25};
+				Flatland fl = new Flatland(weights);
+				fl.graphicRun();
+				return;
+			}else{
+				EA beerEA = new EA(individuals);
+				for(int i = 0; i < Parameters.GENERATIONS; i++){
+					BeertrackerIndividual bestInd = (BeertrackerIndividual)beerEA.runSingleGeneration();
+					BeerTracker bt = new BeerTracker(bestInd.getPhenotype());
+					bt.graphicRun();
+				}
+				showGraph(beerEA.getGiList());
 			}
-			showGraph(beerEA.getGiList());
+
+			
+			
+			
 		}
 		
 		

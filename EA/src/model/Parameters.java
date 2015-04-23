@@ -4,10 +4,10 @@ import ann.NeuronType;
 
 public class Parameters
 {
-	public static int GENERATIONS = 100;
+	public static int GENERATIONS = 1000;
 	//49
 	public static int VECTOR_LENGTH = 70; //18
-	public static double MUTATION_RATE = 0.1;//0.1
+	public static double MUTATION_RATE = 0.2;//0.1
 	public static double CROSSOVER_RATE = 0.7;//0.7
 	public static boolean TWO_POINT_CROSSOVER = false;
 	public static int POPULATION_SIZE = 50;
@@ -26,10 +26,10 @@ public class Parameters
 	public static double FL_BIAS = 0;
 	public static double FL_RAMP_UPPER = 0.8;
 	public static double FL_RAMP_LOWER = 0.2;
-	public static int FL_TIMESTEPS = 600;
+	public static int FL_TIMESTEPS = 60;
 	public static double FL_SIGMOID_SCALING = 1.0;
 	public static double FL_STEP_THRESHOLD = 0.5;
-	public static boolean FL_STATIC_BOARD = true;
+	public static boolean FL_STATIC_BOARD = false;
 	public static NeuronType FL_ACTIVE_FUNC = NeuronType.LINEAR;
 	public static int FL_MAPSIZE = 10;
 	public static int FL_BITSIZE = 8;
@@ -41,8 +41,9 @@ public class Parameters
 	public static int DELAY = 50;
 	public static boolean EA_ELITISM = false;
 	public static int NUM_STATIC_MAPS = 5;
-	public static boolean CHEAT_PLANET = false;
-	public static boolean PULLDOWN_ACTIVE = false;
+	public static boolean CHEAT_PLANET = true;
+	public static boolean PULLDOWN_ACTIVE = true;
+	public static boolean SINGLE_RUN = false;
 	
 	public static void setParameter(String input){
 		String[] data = input.split("=");
