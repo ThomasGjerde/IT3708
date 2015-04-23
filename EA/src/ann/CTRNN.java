@@ -48,7 +48,6 @@ public class CTRNN {
 		int temp = Parameters.BT_INPUT_NEURONS;
 		//int temp2 = Parameters.BT_OUTPUT_NEURONS;
 		//int inputWeights = 39;
-		
 		SigmoidCTRNNNeuron sign = new SigmoidCTRNNNeuron();
 		for (int i = 0; i < this.outputs.length; i++) {
 			outputs[i] = sign.fire(inputs,Arrays.copyOfRange(weights, i * temp, i * temp+temp), weights[(weights.length-1)-i], weights[((weights.length-1)-temp)-i]);

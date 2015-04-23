@@ -111,7 +111,7 @@ public class Main
 				individuals.add(FlatlandIndividual.generateRandomIndividual());
 			}else if(Parameters.PROBLEM_TYPE == ProblemType.BEERTRACKER){
 				if(Parameters.PULLDOWN_ACTIVE){
-					Parameters.VECTOR_LENGTH = 70;
+					Parameters.VECTOR_LENGTH = 124;
 					Parameters.BT_OUTPUT_NEURONS = 10;
 				}else{
 					Parameters.VECTOR_LENGTH = 63;

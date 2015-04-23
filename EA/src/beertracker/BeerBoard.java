@@ -43,7 +43,34 @@ public class BeerBoard {
 	}
 	public double[] getSensorInfo(){
 		int[] positions = agent.getPositions();
-		double[] sensors = new double[positions.length]; 
+		double[] sensors = new double[positions.length];
+		if(Parameters.BT_NO_WRAP){
+			sensors = new double[positions.length+8];
+			if(positions[0] - 1 < 0){
+				sensors[positions.length] = 1;
+			}
+			if(positions[0] - 2 < 0){
+				sensors[positions.length +1] = 1;
+			}
+			if(positions[0] - 3 < 0){
+				sensors[positions.length +2] = 1;
+			}
+			if(positions[0] - 4 < 0){
+				sensors[positions.length +3] = 1;
+			}
+			if(positions[positions.length-1] + 1 > Parameters.BT_SIZE_X -1){
+				sensors[positions.length +4] = 1;
+			}
+			if(positions[positions.length-1] + 2 > Parameters.BT_SIZE_X -1){
+				sensors[positions.length +5] = 1;
+			}
+			if(positions[positions.length-1] + 3 > Parameters.BT_SIZE_X -1){
+				sensors[positions.length +6] = 1;
+			}
+			if(positions[positions.length-1] + 4 > Parameters.BT_SIZE_X -1){
+				sensors[positions.length +7] = 1;
+			}
+		}
 		for(int i = 0; i < positions.length; i++){
 			sensors[i] = 0;
 			for(int j = 0; j < cells[0].length; j++){
@@ -52,9 +79,11 @@ public class BeerBoard {
 				}
 			}
 		}
+		
 		return sensors;
 	}
 	public void moveAgent(Direction dir, int magnitude){
+		//System.out.println(dir.name());
 		//Pulldown
 		this.pulledDown = false;
 		if(dir == Direction.BEERPOOL){
@@ -68,6 +97,10 @@ public class BeerBoard {
 		}
 		int[] sensorPos = agent.getPositions();
 		int[] oldPos = new int[sensorPos.length];
+		boolean setRightMost = false;
+		boolean setLeftMost = false;
+		int[] leftMost = new int[]{0,1,2,3,4};
+		int[] rightMost = new int[]{25,26,27,28,29};
 		for(int i = 0; i < sensorPos.length; i++){
 			int pos = sensorPos[i];
 			oldPos[i] = pos;
@@ -76,14 +109,28 @@ public class BeerBoard {
 			}else if(dir == Direction.RIGHT){
 				pos += magnitude;
 			}
-			if(pos < 0){
-				pos += (Parameters.BT_SIZE_X) ;
-			}else if(pos > (Parameters.BT_SIZE_X -1)){
-				pos += -(Parameters.BT_SIZE_X);
+			if(!Parameters.BT_NO_WRAP){
+				if(pos < 0){
+					pos += (Parameters.BT_SIZE_X) ;
+				}else if(pos > (Parameters.BT_SIZE_X -1)){
+					pos += -(Parameters.BT_SIZE_X);
+				}
+			}else{
+				if(pos < 0){
+					setLeftMost = true;
+				}else if(pos > (Parameters.BT_SIZE_X -1)){
+					setRightMost = true;
+				}
 			}
+			
 			//cells[oldPos][Parameters.BT_SIZE_Y -1] = BeerCellContent.EMPTY;
 			//cells[pos][Parameters.BT_SIZE_Y -1] = BeerCellContent.SENSOR;
 			sensorPos[i] = pos;
+		}
+		if(setLeftMost){
+			sensorPos = leftMost;
+		}else if(setRightMost){
+			sensorPos = rightMost;
 		}
 		agent.setPositions(sensorPos);
 		for(int pos : oldPos){

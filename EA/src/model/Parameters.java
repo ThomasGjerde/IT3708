@@ -4,7 +4,7 @@ import ann.NeuronType;
 
 public class Parameters
 {
-	public static int GENERATIONS = 100;
+	public static int GENERATIONS = 10000;
 	//49
 	public static int VECTOR_LENGTH = 70; //18
 	public static double MUTATION_RATE = 0.1;//0.1
@@ -34,15 +34,16 @@ public class Parameters
 	public static int FL_MAPSIZE = 10;
 	public static int FL_BITSIZE = 8;
 	public static int ANN_RUNS = 10;
-	public static int BT_INPUT_NEURONS = 5;
+	public static int BT_INPUT_NEURONS = 13;
 	public static int BT_OUTPUT_NEURONS = 10;
 	public static int BT_SIZE_X = 30;
 	public static int BT_SIZE_Y = 15;
 	public static int DELAY = 50;
-	public static boolean EA_ELITISM = false;
+	public static boolean EA_ELITISM = true;
 	public static int NUM_STATIC_MAPS = 5;
 	public static boolean CHEAT_PLANET = false;
-	public static boolean PULLDOWN_ACTIVE = false;
+	public static boolean PULLDOWN_ACTIVE = true;
+	public static boolean BT_NO_WRAP = true;
 	
 	public static void setParameter(String input){
 		String[] data = input.split("=");
