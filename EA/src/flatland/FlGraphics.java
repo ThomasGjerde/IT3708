@@ -37,6 +37,7 @@ public class FlGraphics extends JPanel{
 		
 		JFrame frame2  = new JFrame();
 		frame2.setSize(300,75);
+		frame2.setLocation(frame.getWidth(), 0);
 		frame2.setTitle("Slider window");
 		frame2.setVisible(true);
 		frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
