@@ -9,6 +9,7 @@ import beertracker.BeerGraphics;
 import beertracker.BeerTracker;
 import beertracker.BeertrackerIndividual;
 
+import ea.EAGraphics;
 import ea.FlatlandIndividual;
 import ea.Individual;
 import flatland.FlGraphics;
@@ -37,6 +38,9 @@ public class Main
 		for(String s : args){
 			Parameters.setParameter(s);
 		}
+		
+		//Add param controls
+		EAGraphics.showMutateControl();
 		
 		
 		//Generate initial population

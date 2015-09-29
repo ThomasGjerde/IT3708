@@ -18,7 +18,7 @@ public class Parameters
 	public static int TOURNAMENT_SIZE = 4;
 	public static double TOURNAMENT_SELECTION_PROBABILITY = 0.8;
 	public static int LOLZ_CUTOFF = 4;	
-	public static ProblemType PROBLEM_TYPE = ProblemType.BEERTRACKER;
+	public static ProblemType PROBLEM_TYPE = ProblemType.FLATLAND;
 	public static int SYMBOL_SIZE = 20;
 	public static SurprisingSequenceType SURPRISING_SEQUENCE_TYPE = SurprisingSequenceType.GLOBALLY;
 	public static int FL_INPUT_NEURONS = 6;
@@ -29,7 +29,7 @@ public class Parameters
 	public static int FL_TIMESTEPS = 60;
 	public static double FL_SIGMOID_SCALING = 1.0;
 	public static double FL_STEP_THRESHOLD = 0.5;
-	public static boolean FL_STATIC_BOARD = false;
+	public static boolean FL_STATIC_BOARD = true;
 	public static NeuronType FL_ACTIVE_FUNC = NeuronType.LINEAR;
 	public static int FL_MAPSIZE = 10;
 	public static int FL_BITSIZE = 8;
