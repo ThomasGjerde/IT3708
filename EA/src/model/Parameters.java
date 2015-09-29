@@ -4,21 +4,21 @@ import ann.NeuronType;
 
 public class Parameters
 {
-	public static int GENERATIONS = 1000;
+	public static int GENERATIONS = 100;
 	//49
-	public static int VECTOR_LENGTH = 70; //18
+	public static int VECTOR_LENGTH = 5; //18
 	public static double MUTATION_RATE = 0.2;//0.1
 	public static double CROSSOVER_RATE = 0.7;//0.7
 	public static boolean TWO_POINT_CROSSOVER = false;
 	public static int POPULATION_SIZE = 50;
-	public static int PARENT_PAIRS = 75;
+	public static int PARENT_PAIRS = 25;
 	public static AdultSelectionMode ADULT_SELECTION_MODE = AdultSelectionMode.OVER_PRODUCTION;
 	public static double TARGET_FITNESS = 1.1;
 	public static ParentSelectionMode PARENT_SELECTION_MODE = ParentSelectionMode.TOURNAMENT_SELECTION;
 	public static int TOURNAMENT_SIZE = 4;
 	public static double TOURNAMENT_SELECTION_PROBABILITY = 0.8;
 	public static int LOLZ_CUTOFF = 4;	
-	public static ProblemType PROBLEM_TYPE = ProblemType.BEERTRACKER;
+	public static ProblemType PROBLEM_TYPE = ProblemType.TFE;
 	public static int SYMBOL_SIZE = 20;
 	public static SurprisingSequenceType SURPRISING_SEQUENCE_TYPE = SurprisingSequenceType.GLOBALLY;
 	public static int FL_INPUT_NEURONS = 6;

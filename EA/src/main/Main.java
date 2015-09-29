@@ -17,6 +17,7 @@ import flatland.Flatland;
 import onemax.OneMaxIndividual;
 import plot.BarChart_AWT;
 import surprisingsequenses.SurprisingSequensesIndividual;
+import twentyfortyeigth.TFEIndividual;
 import util.Utilities;
 
 import lolz.LolzIndividual;
@@ -93,10 +94,16 @@ public class Main
 				}
 				showGraph(beerEA.getGiList());
 			}
-
-			
-			
-			
+		}else if(Parameters.PROBLEM_TYPE == ProblemType.TFE){
+			EA tfeEa = new EA(individuals);
+			for(int i = 0; i < Parameters.GENERATIONS; i++){
+				TFEIndividual bestTfe = (TFEIndividual)tfeEa.runSingleGeneration();
+				System.out.println("BestPheno: " + bestTfe.getFitness());
+				Utilities.printDoubleArray(bestTfe.getPhenotype());
+				
+				
+			}
+			showGraph(tfeEa.getGiList());
 		}
 		
 		
@@ -129,6 +136,9 @@ public class Main
 					Parameters.BT_OUTPUT_NEURONS = 9;
 				}
 				individuals.add(BeertrackerIndividual.generateRandomIndividual());
+			}else if(Parameters.PROBLEM_TYPE == ProblemType.TFE){
+				Parameters.VECTOR_LENGTH = 5;
+				individuals.add(TFEIndividual.generateRandomIndividual());
 			}
 		}
 		return individuals;

@@ -295,6 +295,7 @@ public class Population
 		System.out.println("Highest fitness: " + highestFitness);
 		System.out.println("SD: " + sd);
 		System.out.println("Best individual: " + mostFitIndividual.toString());
+		System.out.println("Popsize: " + individuals.size());
 		System.out.println("----------------------------------------------------");
 	}
 	/*
