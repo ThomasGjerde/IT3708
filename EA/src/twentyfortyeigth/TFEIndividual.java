@@ -33,7 +33,7 @@ public class TFEIndividual extends BinaryVectorIndividual{
 
 	@Override
 	public void calcFitness() {
-		TFE tfe = new TFE(2048, this.phenotype[0], this.phenotype[1], this.phenotype[2], this.phenotype[3], this.phenotype[4]);
+		TFE tfe = new TFE(4096, this.phenotype[0], this.phenotype[1], this.phenotype[2], this.phenotype[3], this.phenotype[4]);
 		try {
 			setFitness(tfe.runMultiThreadedTest(15));
 		} catch (InterruptedException | ExecutionException e) {

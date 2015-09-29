@@ -63,7 +63,7 @@ public class TFE {
 	public double runMultiThreadedTest(int iterations) throws InterruptedException, ExecutionException{
 		int wins = 0;
 		int fails = 0;
-		ExecutorService executorService = Executors.newFixedThreadPool(8);
+		ExecutorService executorService = Executors.newFixedThreadPool(15);
 		List<Future> futures = new ArrayList<>();
 		for(int i = 0; i < iterations; i++){
 			Future<Boolean> future = executorService.submit(new Callable<Boolean>(){
@@ -108,7 +108,7 @@ public class TFE {
 		board.smoothnessMultiplier = this.smoothnessMultiplier;
 		
 		while(!board.hasFailed() && !board.victoryCheck()) {
-			depth = 1;
+			depth = 2;
 			MinMax minMax = new MinMax(board);
 			Move bestMove = minMax.search(initAlpha, initBeta, depth);
 			while(bestMove.getDirection() == null && depth > 0){

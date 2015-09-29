@@ -34,6 +34,7 @@ public class Main
 	 */
 	public static void main(String[] args)
 	{
+		System.out.println("Starting EA v1.0");
 		//Set parameters
 		for(String s : args){
 			Parameters.setParameter(s);

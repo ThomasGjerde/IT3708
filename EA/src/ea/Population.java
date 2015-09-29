@@ -55,7 +55,7 @@ public class Population
 	private void calcGenerationInfo(){
 		double popFit = 0;
 		for(Individual individ : individuals){
-			individ.calcFitness();
+			//individ.calcFitness();
 			popFit += individ.getFitness();
 			if(individ.getFitness() >= highestFitness){
 				highestFitness = individ.getFitness();

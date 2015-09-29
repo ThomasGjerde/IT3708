@@ -4,7 +4,7 @@ import ann.NeuronType;
 
 public class Parameters
 {
-	public static int GENERATIONS = 100;
+	public static int GENERATIONS = 1000;
 	//49
 	public static int VECTOR_LENGTH = 5; //18
 	public static double MUTATION_RATE = 0.2;//0.1
